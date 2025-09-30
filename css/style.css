@@ -182,7 +182,6 @@ header {
 }
 
 .modal-body>ul>li {
-  /*  height: 2.5em; */
   text-align: center;
   list-style: none;
 }
@@ -247,26 +246,43 @@ header {
   gap: 10px;
 }
 
-/* .added-filter-row {
+.filter-row-layout {
+  width: 100%;
   gap: 6px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-} */
+}
 
-.added-filter-row .badge-display {
-  height: 18.3px;
-  width: clamp(5.9rem, 20vw, 10rem);
-  object-fit: contain;
-  object-position: left center;
+.badge-column {
+  min-width: 5.9rem;
   flex-shrink: 0;
 }
 
-.added-filter-row .level-display {
+.level-column {
   width: clamp(11rem, 40vw, 15rem);
   position: relative;
   left: 50%;
   transform: translateX(-90%);
+  flex-shrink: 0;
+}
+
+.action-column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+}
+
+.badge-display {
+  height: 18.3px;
+  width: 100%;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.level-display {
+  width: 100%;
   text-align: center;
   display: flex;
   align-items: center;
@@ -274,7 +290,6 @@ header {
   gap: 10px;
   font-family: var(--font-raleway);
   font-size: 9px;
-  flex-shrink: 0;
 }
 
 .btn-remove-filter,
@@ -286,7 +301,6 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: auto;
   height: 10px;
 }
 
@@ -322,15 +336,7 @@ header {
 
 .custom-dropdown {
   position: relative;
-}
-
-.filtro-select,
-.added-filter-row {
   width: 100%;
-  gap: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 
 .dropdown-select {
@@ -355,7 +361,6 @@ header {
 }
 
 .dropdown-select.disabled {
-  /* margin-right: 4rem; */
   cursor: not-allowed;
 }
 
@@ -363,13 +368,6 @@ header {
   opacity: 0.6;
 }
 
-.badge-select {
-  min-width: 5.9rem;
-}
-
-.level-select {
-  width: clamp(11rem, 40vw, 15rem);
-}
 
 .dropdown-arrow {
   transition: transform 0.2s ease-in-out;
@@ -587,13 +585,21 @@ header {
     width: 26px;
   }
 
-  .added-filter-row .badge-display {
-    width: 9rem;
+  .badge-column {
+    min-width: 9.75rem;
+  }
+
+  .level-column {
+    min-width: 18.9rem;
+  }
+
+  .badge-display {
     height: 24px;
   }
 
-  .added-filter-row .level-display {
+  .level-display {
     min-width: 16.5rem;
+    font-size: 16px;
   }
 
   .btn-filter-action {
@@ -616,6 +622,10 @@ header {
     font-size: 12px;
   }
 
+  .custom-dropdown .badge-select {
+    max-width: 8rem;
+  }
+
   .badge-item img,
   .badge-item-img {
     height: 24px;
@@ -625,23 +635,8 @@ header {
     margin-top: 10px;
   }
 
-  .level-display,
-  .added-filter-row .level-display {
-    position: relative;
-
-    font-size: 16px;
-  }
-
   .level-item {
     font-size: 16px;
-  }
-
-  .badge-select {
-    min-width: 9.75rem;
-  }
-
-  .level-select {
-    min-width: 18.9rem;
   }
 
   /* fim modal filtragem */

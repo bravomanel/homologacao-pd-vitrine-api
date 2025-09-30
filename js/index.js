@@ -38,8 +38,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // html para exibir o select de nível vazio - não selecionado
     const createLevelSelectHTML = () => {
         return `
-            <div class="dropdown-select level-select disabled">
-                <span>Nenhum nível selecionado</span>
+            <div class="custom-dropdown">
+                <div class="dropdown-select level-select disabled">
+                    <span>Nenhum nível selecionado</span>
+                </div>
             </div>
         `;
     };
@@ -48,16 +50,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const createAddedFilterHTML = (badge, level) => {
         const rowId = `added-filter-${Date.now()}`;
         const levelDisplayHTML = level ? createLevelDisplayHTML(level) : createLevelSelectHTML();
-        
+
         return `
-            <div class="added-filter-row" id="${rowId}" data-badge="${badge.name}" data-level="${level ? level.name : ''}">
+        <div class="filter-row-layout added-filter-row" id="${rowId}" data-badge="${badge.name}" data-level="${level ? level.name : ''}">
+            <div class="badge-column">
                 <img src="${badge.imgSrc}" alt="${badge.name}" class="badge-display">
+            </div>
+            <div class="level-column">
                 <div class="level-display">
                     ${levelDisplayHTML}
                 </div>
+            </div>
+            <div class="action-column">
                 <button class="btn-remove-filter" data-remove-id="${rowId}">${removeIconSVG}</button>
             </div>
-        `;
+        </div>
+    `;
     };
 
     // limpa seleção atual para valores padrão
@@ -67,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
         badgeSelect.innerHTML = `<span>Badges</span>${arrowIconSVG}`;
         levelSelect.innerHTML = `<span>Níveis de experiência</span>${arrowIconSVG}`;
     };
-    
+
     // atualiza opções de badges disponíveis no dropdown, removendo as já adicionadas
     function updateBadgeOptions() {
         const addedBadges = new Set(
@@ -109,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Por favor, selecione uma badge para adicionar.');
             return;
         }
-        
+
         const levelToAdd = currentSelectedLevel;
         const newFilterHTML = createAddedFilterHTML(currentSelectedBadge, levelToAdd);
         addedFiltersContainer.insertAdjacentHTML('beforeend', newFilterHTML);
@@ -120,13 +128,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // Listener para cliques na página
     document.addEventListener('click', (e) => {
         // abrir/fechar dropdowns
-        const dropdownSelect = e.target.closest('.dropdown-select');
+        const dropdownSelect = e.target.closest('.dropdown-select:not(.disabled)');
         if (dropdownSelect) {
             const dropdownMenu = dropdownSelect.nextElementSibling;
             const isOpen = dropdownSelect.classList.contains('open');
             closeAllDropdowns(isOpen ? null : dropdownSelect);
             dropdownSelect.classList.toggle('open');
-            dropdownMenu.classList.toggle('show');
+            if (dropdownMenu) {
+                dropdownMenu.classList.toggle('show');
+            }
             return;
         }
 
@@ -139,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
             closeAllDropdowns();
             return;
         }
-         
+
         // selecionar nível
         const levelItem = e.target.closest('#selection-row .level-item');
         if (levelItem) {
@@ -182,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         document.querySelectorAll('.added-filter-row').forEach(row => {
             if (row.dataset.badge && row.dataset.level) {
-                 filters.skills.push({
+                filters.skills.push({
                     badge: row.dataset.badge,
                     level: row.dataset.level
                 });

@@ -109,26 +109,26 @@
                             <div id="added-filters-container">
                             </div>
 
-                            <div class="d-flex align-items-center filtro-select" id="selection-row">
-                                <div class="custom-dropdown">
-                                    <div class="dropdown-select badge-select" tabindex="0" data-value="">
-                                        <span>Badges</span>
-                                        <img src="imagens/icones/down.svg" class="dropdown-arrow icon"
-                                            alt="seta para abrir">
-                                    </div>
-                                    <div class="dropdown-menu-custom badge-dropdown-menu">
-                                    </div>
-                                </div>
-                                <div class="custom-dropdown">
-                                    <div class="dropdown-select level-select" tabindex="0" data-value="">
-                                        <span>Níveis de experiência</span>
-                                        <img src="imagens/icones/down.svg" class="dropdown-arrow icon"
-                                            alt="seta para abrir">
-                                    </div>
-                                    <div class="dropdown-menu-custom level-dropdown-menu">
+                            <div class="filter-row-layout" id="selection-row">
+                                <div class="badge-column">
+                                    <div class="custom-dropdown">
+                                        <div class="dropdown-select badge-select" tabindex="0" data-value="">
+                                            <span>Badges</span>
+                                            <img src="imagens/icones/down.svg" class="dropdown-arrow icon" alt="seta para abrir">
+                                        </div>
+                                        <div class="dropdown-menu-custom badge-dropdown-menu"></div>
                                     </div>
                                 </div>
-                                <div class="">
+                                <div class="level-column">
+                                    <div class="custom-dropdown">
+                                        <div class="dropdown-select level-select" tabindex="0" data-value="">
+                                            <span>Níveis de experiência</span>
+                                            <img src="imagens/icones/down.svg" class="dropdown-arrow icon" alt="seta para abrir">
+                                        </div>
+                                        <div class="dropdown-menu-custom level-dropdown-menu"></div>
+                                    </div>
+                                </div>
+                                <div class="action-column">
                                     <button class="btn-add-filter" id="add-filter-btn" aria-label="Adicionar filtro">
                                     </button>
                                 </div>
@@ -142,7 +142,8 @@
                     </div>
                 </div>
             </div>
-            <!-- fim modal filtragem -->
+        </div>
+        <!-- fim modal filtragem -->
 
     </header>
 
@@ -160,7 +161,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
-    <script src="/js/modal-filtragem.js"></script>
+    <script src="/js/index.js"></script>
 </body>
 
 </html>
