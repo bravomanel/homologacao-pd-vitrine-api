@@ -1,0 +1,648 @@
+:root {
+  --branco-forte: #FFFFFF;
+  --preto: #000000;
+  --cor-bg-card: #161D26;
+  --cor-bg-pagina: #243650;
+  --amarelo-pd: #F4BC1D;
+  --font-vollkorn: 'Vollkorn', serif;
+  --font-raleway: 'Raleway', sans-serif;
+}
+
+body {
+  background-color: var(--cor-bg-pagina);
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+/* cabeçalho */
+header {
+  background-color: var(--cor-bg-card);
+  border-bottom: 3px solid var(--amarelo-pd);
+  width: 100%;
+  min-width: 85.33dvw;
+  height: 3.75rem;
+  padding: 0 1.25em;
+}
+
+/* logo */
+#logo-desktop,
+.btn__sistema-desktop {
+  display: none;
+}
+
+#logo-mobile {
+  display: block;
+  width: 2.5em;
+  height: 2em;
+}
+
+.btn__sistema-mobile {
+  display: block;
+}
+
+/* barra de pesquisar / modal filtragem */
+#modal__filtragem {
+  width: 2.18em;
+  height: 2.18em;
+  border-radius: 0.625em;
+  background-color: var(--amarelo-pd);
+}
+
+#icone-pesquisar {
+  width: 1.5em;
+  height: 1.5em;
+  cursor: pointer;
+}
+
+#modal__filtragem>input {
+  display: none;
+}
+
+/* botão sistema */
+.btn-sistema {
+  width: 2.18em;
+  height: 2.18em;
+
+  border-radius: 0.62em;
+  background-color: var(--amarelo-pd);
+
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+#icone-sistema {
+  width: 1.12em;
+  height: 1.12em;
+  margin-right: 1em;
+}
+
+.btn-sistema>h3 {
+  display: none;
+}
+
+/* botão sistema: menu suspenso */
+
+.dropdown {
+  display: block;
+}
+
+.dropdown-menu {
+  width: 10.65em;
+  height: auto;
+  background-color: transparent;
+  border: none;
+}
+
+.dropdown-header {
+  background-color: var(--amarelo-pd);
+  border-radius: 0.93em 0.93em 0 0;
+  text-align: center;
+  color: var(--preto);
+  font: var(--font-raleway);
+  font-size: 1em;
+}
+
+/* estilo suspenso do botão sistema sm "cabeçalho" */
+.dropdown-item {
+  height: 2.5em;
+  text-align: center;
+  margin: auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus,
+.dropdown-item:active {
+  background-color: transparent;
+  color: var(--branco-forte);
+}
+
+.dropdown-menu li:not(:first-child) {
+  width: 100%;
+  background-color: var(--cor-bg-card);
+  text-align: center;
+}
+
+/* borda de separação depois de 2 itens */
+.dropdown-menu li:nth-child(n+3) {
+  border-top: 1px solid var(--amarelo-pd);
+}
+
+/* Somente o ultimo item tem a borda redondada */
+.dropdown-menu li:last-child {
+  border-radius: 0 0 0.93em 0.93em;
+}
+
+.dropdown-menu li a {
+  color: var(--branco-forte);
+}
+
+/* fim cabeçalho */
+/* modal btn sistema */
+#btn-sistemaModal {
+  border: none;
+}
+
+.modal__sistemas {
+  width: 12.5em;
+  height: 2.5em;
+  border: none;
+  position: relative;
+  top: 25%;
+  transform: translate(-50%, -50%);
+
+}
+
+.cor-bg {
+  background-color: var(--cor-bg-card);
+}
+
+.modal__sistemas-header {
+  background-color: var(--amarelo-pd);
+  border-bottom: none;
+  color: var(--preto);
+  text-align: center;
+  height: 2.5em;
+}
+
+.modal__sistemas-header>h1 {
+  width: 100%;
+  text-align: center;
+  color: var(--preto);
+}
+
+.btn-close {
+  color: var(--preto);
+}
+
+.modal-body>ul>li {
+  /*  height: 2.5em; */
+  text-align: center;
+  list-style: none;
+}
+
+/* fim modal botão sistema */
+/* modal filtragem / pesquisar */
+
+.modal-body {
+  padding: 8px;
+}
+
+.modal-dialog {
+  max-width: 545px;
+  margin: 0 auto;
+}
+
+.modal-content {
+  position: relative;
+  background-color: var(--cor-bg-card);
+  border-radius: 15px;
+  color: var(--branco-forte);
+}
+
+.borda-amarelo {
+  border: 2px solid var(--amarelo-pd);
+}
+
+.btn-close-modal-mobile {
+  display: none;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  z-index: 10;
+}
+
+.btn-close-modal-mobile img {
+  width: 24px;
+  height: 24px;
+}
+
+.modal-title {
+  font-family: var(--font-vollkorn);
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--amarelo-pd);
+
+  border-bottom: 1px solid var(--amarelo-pd);
+  opacity: 1;
+  margin-bottom: 6px;
+}
+
+.filter-section>* {
+  margin-bottom: 0.375rem;
+}
+
+#added-filters-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* .added-filter-row {
+  gap: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+} */
+
+.added-filter-row .badge-display {
+  height: 18.3px;
+  width: clamp(5.9rem, 20vw, 10rem);
+  object-fit: contain;
+  object-position: left center;
+  flex-shrink: 0;
+}
+
+.added-filter-row .level-display {
+  width: clamp(11rem, 40vw, 15rem);
+  position: relative;
+  left: 50%;
+  transform: translateX(-90%);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-family: var(--font-raleway);
+  font-size: 9px;
+  flex-shrink: 0;
+}
+
+.btn-remove-filter,
+.btn-add-filter {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  height: 10px;
+}
+
+.filter-input {
+  margin-top: 0.5rem;
+}
+
+.filter-input,
+.dropdown-select {
+  background-color: transparent;
+  border: 0.8px solid var(--amarelo-pd);
+  border-radius: 4px;
+  height: 26px;
+  color: var(--branco-forte);
+  font-family: var(--font-raleway);
+  font-weight: 600;
+  font-size: 9px;
+}
+
+.filter-input::placeholder,
+.dropdown-select>span {
+  color: var(--branco-forte);
+  opacity: 0.8;
+}
+
+.filter-input:focus,
+.dropdown-select:focus {
+  background-color: transparent;
+  color: var(--branco-forte);
+  box-shadow: 0 0 0 2px var(--amarelo-pd);
+  border-color: var(--amarelo-pd);
+}
+
+.custom-dropdown {
+  position: relative;
+}
+
+.filtro-select,
+.added-filter-row {
+  width: 100%;
+  gap: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dropdown-select {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+  align-items: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.dropdown-select .level-item {
+  font-size: 9px;
+  padding: 0;
+}
+
+.dropdown-select .star,
+.level-dropdown-menu .star {
+  width: 16px;
+  height: auto;
+  margin: 0;
+}
+
+.dropdown-select.disabled {
+  /* margin-right: 4rem; */
+  cursor: not-allowed;
+}
+
+.dropdown-select.disabled span {
+  opacity: 0.6;
+}
+
+.badge-select {
+  min-width: 5.9rem;
+}
+
+.level-select {
+  width: clamp(11rem, 40vw, 15rem);
+}
+
+.dropdown-arrow {
+  transition: transform 0.2s ease-in-out;
+}
+
+.dropdown-select.open .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu-custom {
+  display: none;
+  position: absolute;
+  width: 100%;
+  background-color: var(--cor-bg-card);
+  border: 2px solid var(--amarelo-pd);
+  border-radius: 4px;
+  margin-top: 5px;
+  z-index: 1056;
+  padding: 0 10px 4px 10px;
+  max-height: 220px;
+}
+
+.dropdown-menu-custom.show {
+  display: block;
+}
+
+.badge-dropdown-menu {
+  overflow-y: auto;
+  direction: rtl;
+}
+
+.badge-dropdown-menu .badge-item {
+  direction: ltr;
+}
+
+.badge-dropdown-menu::-webkit-scrollbar {
+  width: 8px;
+  margin: 3px;
+}
+
+.badge-dropdown-menu::-webkit-scrollbar-track {
+  background: var(--cor-bg-pagina);
+  margin: 3px;
+}
+
+.badge-dropdown-menu::-webkit-scrollbar-thumb {
+  background: var(--amarelo-pd);
+}
+
+.level-dropdown-menu {
+  overflow-y: hidden;
+}
+
+.badge-item,
+.level-item {
+  cursor: pointer;
+}
+
+.badge-item img,
+.badge-item-img {
+  height: 18.3px;
+  max-width: 100%;
+  border-radius: 4px;
+}
+
+.level-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3px 1px;
+  font-family: var(--font-raleway);
+  font-size: 9px;
+}
+
+.star {
+  margin: 0 0px;
+  width: 20px;
+  height: auto;
+}
+
+.icon {
+  width: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.action-buttons {
+  display: flex;
+  gap: clamp(1rem, 4vw, 2rem);
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.btn-filter-action {
+  width: 90px;
+  height: 40px;
+  background-color: var(--amarelo-pd);
+  color: var(--preto);
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font-raleway);
+  font-weight: 600;
+  font-size: 14px;
+  text-align: center;
+  padding: 0;
+}
+
+.btn-hover,
+.btn:hover,
+.btn:focus,
+.btn:active {
+  background-color: var(--amarelo-pd);
+  color: var(--preto);
+}
+
+/* fim modal filtragem */
+
+/* media desktop */
+@media screen and (min-width:720px) {
+
+  /* cabeçalho */
+  header {
+    width: 100%;
+    min-width: 100dvw;
+    height: 6.35rem;
+    padding: 0 3.75em;
+  }
+
+  /* logo */
+  #logo-desktop {
+    display: block;
+    width: 6.25em;
+    height: 5.62em;
+  }
+
+  #logo-mobile {
+    display: none;
+  }
+
+  /* barra de pesquisar / modal filtragem */
+  #modal__filtragem {
+    width: 45.139dvw;
+    height: 2.5em;
+    border-radius: 0.93em;
+  }
+
+  /* estilo do input modal filtragem / pesquisar */
+  #modal__filtragem>input {
+    display: block;
+    max-width: 100%;
+    font: var(--font-raleway);
+    background-color: var(--amarelo-pd);
+    cursor: pointer;
+  }
+
+  #modal__filtragem>input::placeholder {
+    color: var(--preto);
+    font: var(--font-raleway);
+    font-size: 1em;
+  }
+
+  /* retirar a sombra quando clica no input */
+  #modal__filtragem>input:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: transparent;
+  }
+
+  /* botão pesquisar */
+
+  .dropdown {
+    display: block;
+  }
+
+  .btn-sistema {
+    min-width: 10.65em;
+    height: 2.5em;
+    padding: 0 2em;
+
+    border-radius: 0.93em;
+  }
+
+  .mobile__btn-sistema:focus,
+  .mobile__btn-sistema:active {
+    border-radius: 0.93em 0.93em 0 0;
+  }
+
+  .btn-sistema>h3 {
+    display: block;
+    color: var(--preto);
+    font: var(--font-raleway);
+    font-size: 1em;
+  }
+
+  .dropdown-menu {
+    border-bottom-left-radius: 0.93rem;
+    border-bottom-right-radius: 0.93rem;
+  }
+
+  .dropdown-header {
+    display: none;
+  }
+
+  /* fim cabeçalho */
+  /* modal filtragem */
+  .star,
+  .dropdown-select .star,
+  .level-dropdown-menu .star {
+    height: 20px;
+    width: 20px;
+    margin: 0.25rem;
+  }
+
+  .icon {
+    width: 26px;
+  }
+
+  .added-filter-row .badge-display {
+    width: 9rem;
+    height: 24px;
+  }
+
+  .added-filter-row .level-display {
+    min-width: 16.5rem;
+  }
+
+  .btn-filter-action {
+    width: 121px;
+    height: 35px;
+    font-size: 13px;
+  }
+
+  .modal-body {
+    padding: 1rem;
+    font-size: 16px;
+  }
+
+  .dropdown-menu-custom {
+    padding: 8px;
+  }
+
+  .filter-input,
+  .dropdown-select {
+    font-size: 12px;
+  }
+
+  .badge-item img,
+  .badge-item-img {
+    height: 24px;
+  }
+
+  .badge-dropdown-menu .badge-item {
+    margin-top: 10px;
+  }
+
+  .level-display,
+  .added-filter-row .level-display {
+    position: relative;
+
+    font-size: 16px;
+  }
+
+  .level-item {
+    font-size: 16px;
+  }
+
+  .badge-select {
+    min-width: 9.75rem;
+  }
+
+  .level-select {
+    min-width: 18.9rem;
+  }
+
+  /* fim modal filtragem */
+}
