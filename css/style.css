@@ -15,7 +15,7 @@ body {
   margin: 0;
 }
 
-/* cabeçalho */
+/* CABEÇALHO */
 header {
   background-color: var(--cor-bg-card);
   border-bottom: 3px solid var(--amarelo-pd);
@@ -640,4 +640,44 @@ header {
   }
 
   /* fim modal filtragem */
+}
+
+
+
+
+/* PAGINA PROJETO */
+
+/* Botão Voltar */
+
+.pd-projeto-header {
+    background-color: var(--amarelo-pd);
+    font-family: 'Raleway', sans-serif;
+    margin-top: 60px;
+}
+
+.pd-projeto-header a {
+    color: var(--cor-bg-pagina);
+}
+
+.pd-projeto-header {
+    height: 38px;
+}
+
+.pd-projeto-header a {
+    font-size: 22px;
+}
+
+.pd-projeto-header .bi {
+    font-size: 1.2em;
+}
+
+@media (min-width: 720px) {
+    .pd-projeto-header {
+        height: 60px;
+        margin-top: 101px;
+    }
+
+    .pd-projeto-header a {
+        font-size: 29px;
+    }
 }
