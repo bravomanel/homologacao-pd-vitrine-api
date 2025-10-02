@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
     const projectImages = [
-        'imagens/foto-projeto.png',
-        'imagens/vitrine (1).png',
-        'imagens/vitrine (2).png',
-        'imagens/vitrine (3).png',
-        'imagens/vitrine (4).png',
-        'imagens/vitrine (5).png'
+        'imagens/projetos/foto-projeto.png',
+        'imagens/projetos/vitrine (1).png',
+        'imagens/projetos/vitrine (2).png',
+        'imagens/projetos/vitrine (3).png',
+        'imagens/projetos/vitrine (4).png',
+        'imagens/projetos/vitrine (5).png'
     ];
 
     const carouselContainer = document.getElementById('project-carousel-mobile');
@@ -53,8 +53,8 @@ document.addEventListener('DOMContentLoaded', function () {
             galleryHTML += `<div class="gallery-item gallery-item-bottom-right" data-bs-toggle="modal" data-bs-target="#gallery-modal" data-index="2"><img src="${projectImages[2]}" alt="Imagem 3"></div>`;
         } else if (totalImages > 3) {
             const hiddenCount = totalImages - 3;
-            galleryHTML += `<div class="gallery-item gallery-item-bottom-left more-images-overlay" data-bs-toggle="modal" data-bs-target="#gallery-modal" data-index="2"><img src="${projectImages[2]}" alt="Mais imagens"><div class="image-count">+${hiddenCount}</div></div>`;
-            galleryHTML += `<div class="gallery-item gallery-item-bottom-right" data-bs-toggle="modal" data-bs-target="#gallery-modal" data-index="1"><img src="${projectImages[1]}" alt="Imagem 2"></div>`;
+            galleryHTML += `<div class="gallery-item gallery-item-bottom-right more-images-overlay" data-bs-toggle="modal" data-bs-target="#gallery-modal" data-index="2"><img src="${projectImages[2]}" alt="Mais imagens"><div class="image-count">+${hiddenCount}</div></div>`;
+            galleryHTML += `<div class="gallery-item gallery-item-bottom-left" data-bs-toggle="modal" data-bs-target="#gallery-modal" data-index="1"><img src="${projectImages[1]}" alt="Imagem 2"></div>`;
         }
         
         galleryContainer.innerHTML = `<div class="desktop-gallery-grid">${galleryHTML}</div>`;
