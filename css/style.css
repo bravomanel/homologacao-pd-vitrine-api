@@ -20,7 +20,6 @@ header {
   background-color: var(--cor-bg-card);
   border-bottom: 3px solid var(--amarelo-pd);
   width: 100%;
-  min-width: 85.33dvw;
   height: 3.75rem;
   padding: 0 1.25em;
 }
@@ -491,7 +490,6 @@ header {
   /* cabeçalho */
   header {
     width: 100%;
-    min-width: 100dvw;
     height: 6.35rem;
     padding: 0 3.75em;
   }
@@ -651,6 +649,10 @@ header {
 .pd-projeto-botao-voltar {
     background-color: var(--amarelo-pd);
     font-family: 'Raleway', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 38px;
 }
 
 .pd-projeto-botao-voltar a {
@@ -664,7 +666,7 @@ header {
     height: 24px;
     position: absolute;
     left: 0%;
-    margin-left: 1rem;
+    margin-left: 2rem;
 }
 
 .pd-projeto-botao-voltar a span {
@@ -1045,7 +1047,13 @@ header {
         padding: 0.5rem 0.25rem;
     }
   }
+
+
+
+
+  
 /*BANNERS CARROSSEL*/
+
 #carrossel-mobile {
     display: block;
 }
