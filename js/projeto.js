@@ -1,11 +1,14 @@
 document.addEventListener('DOMContentLoaded', function () {
     const projectImages = [
-        'imagens/projetos/foto-projeto.png',
-        'imagens/projetos/vitrine (1).png',
-        'imagens/projetos/vitrine (2).png',
-        'imagens/projetos/vitrine (3).png',
         'imagens/projetos/vitrine (4).png',
-        'imagens/projetos/vitrine (5).png'
+        'imagens/projetos/vitrine (5).png',
+        'imagens/projetos/vitrine (1).png',
+        'imagens/projetos/vitrine (3).png',
+        'imagens/projetos/vitrine (2).png',
+        'imagens/projetos/vitrine (6).png',
+        'imagens/projetos/vitrine (7).png',
+        'imagens/projetos/vitrine (8).png'
+
     ];
 
     const carouselContainer = document.getElementById('project-carousel-mobile');
@@ -40,23 +43,51 @@ document.addEventListener('DOMContentLoaded', function () {
     // galeria desktop, dinamica para a quantidade de imagens
     function renderDesktopGallery() {
         if (!galleryContainer || projectImages.length === 0) return;
-        
+
         let galleryHTML = '';
         const totalImages = projectImages.length;
-        
+
+        // imagem principal
         galleryHTML += `<div class="gallery-item gallery-item-main" data-bs-toggle="modal" data-bs-target="#gallery-modal" data-index="0"><img src="${projectImages[0]}" alt="Imagem 1"></div>`;
 
-        if (totalImages === 2) {
-            galleryHTML += `<div class="gallery-item gallery-item-bottom-left" data-bs-toggle="modal" data-bs-target="#gallery-modal" data-index="1"><img src="${projectImages[1]}" alt="Imagem 2"></div>`;
-        } else if (totalImages === 3) {
-            galleryHTML += `<div class="gallery-item gallery-item-bottom-left" data-bs-toggle="modal" data-bs-target="#gallery-modal" data-index="1"><img src="${projectImages[1]}" alt="Imagem 2"></div>`;
-            galleryHTML += `<div class="gallery-item gallery-item-bottom-right" data-bs-toggle="modal" data-bs-target="#gallery-modal" data-index="2"><img src="${projectImages[2]}" alt="Imagem 3"></div>`;
-        } else if (totalImages > 3) {
-            const hiddenCount = totalImages - 3;
-            galleryHTML += `<div class="gallery-item gallery-item-bottom-right more-images-overlay" data-bs-toggle="modal" data-bs-target="#gallery-modal" data-index="2"><img src="${projectImages[2]}" alt="Mais imagens"><div class="image-count">+${hiddenCount}</div></div>`;
+        // imagem média da esquerda (se houver 2 ou mais imagens)
+        if (totalImages >= 2) {
             galleryHTML += `<div class="gallery-item gallery-item-bottom-left" data-bs-toggle="modal" data-bs-target="#gallery-modal" data-index="1"><img src="${projectImages[1]}" alt="Imagem 2"></div>`;
         }
-        
+
+        // lógica para o slot da direita
+        if (totalImages === 3) {
+            // 3 imagens, mostra a terceira imagem média.
+            galleryHTML += `<div class="gallery-item gallery-item-bottom-right" data-bs-toggle="modal" data-bs-target="#gallery-modal" data-index="2"><img src="${projectImages[2]}" alt="Imagem 3"></div>`;
+        } else if (totalImages >= 4) {
+            // caso 4 ou mais imagens, cria o sub-grid 2x2.
+            let subGridHTML = '<div class="gallery-sub-grid">';
+            const maxInSubGrid = 4;
+            const subGridImages = projectImages.slice(2, 2 + maxInSubGrid);
+            const hiddenCount = totalImages - 6; 
+
+            subGridImages.forEach((src, i) => {
+                const imageIndex = 2 + i; // índice real da imagem no array principal
+
+                // o último slot do sub-grid (índice 3) E houver mais imagens escondidas
+                if (i === maxInSubGrid - 1 && hiddenCount > 0) {
+                    subGridHTML += `
+                        <div class="gallery-item more-images-overlay" data-bs-toggle="modal" data-bs-target="#gallery-modal" data-index="${imageIndex}">
+                            <img src="${src}" alt="Mais imagens">
+                            <div class="image-count">+${hiddenCount + 1}</div>
+                        </div>`;
+                } else {
+                    subGridHTML += `
+                        <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#gallery-modal" data-index="${imageIndex}">
+                            <img src="${src}" alt="Imagem ${imageIndex + 1}">
+                        </div>`;
+                }
+            });
+
+            subGridHTML += '</div>';
+            galleryHTML += `<div class="gallery-item-bottom-right">${subGridHTML}</div>`;
+        }
+
         galleryContainer.innerHTML = `<div class="desktop-gallery-grid">${galleryHTML}</div>`;
     }
 

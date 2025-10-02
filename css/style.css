@@ -644,39 +644,50 @@ header {
 
 
 
-
 /* PAGINA PROJETO */
 
-/* Botão Voltar */
 
-.pd-projeto-header {
+/* Botão Voltar */
+.pd-projeto-botao-voltar {
     background-color: var(--amarelo-pd);
     font-family: 'Raleway', sans-serif;
 }
 
-.pd-projeto-header a {
+.pd-projeto-botao-voltar a {
     color: var(--cor-bg-pagina);
-}
-
-.pd-projeto-header {
-    height: 38px;
-}
-
-.pd-projeto-header a {
     font-size: 22px;
+    text-align: center;
 }
 
-.pd-projeto-header .bi {
+.botao-voltar-projeto {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    left: 0%;
+    margin-left: 1rem;
+}
+
+.pd-projeto-botao-voltar a span {
+    vertical-align: middle;
+    margin: auto;
+}
+
+.pd-projeto-botao-voltar .bi {
     font-size: 1.2em;
 }
 
 @media (min-width: 720px) {
-    .pd-projeto-header {
+    .pd-projeto-botao-voltar {
         height: 60px;
     }
 
-    .pd-projeto-header a {
+    .pd-projeto-botao-voltar a {
         font-size: 29px;
+    }
+
+    .botao-voltar-projeto {
+        width: 36px;
+        height: 36px;
     }
 }
 
@@ -691,8 +702,13 @@ header {
     background-image: url('../imagens/projeto-background-mobile.png');
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
 }
+
+
+.project-layout-container {
+      margin-top: 2rem;
+  }
 
 .project-title {
     font-family: var(--font-vollkorn);
@@ -786,6 +802,14 @@ header {
     text-align: center;
 }
 
+.profile-pic {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
 #gallery-modal .modal-dialog {
     max-width: 90vw;
     width: auto;
@@ -812,6 +836,14 @@ header {
     opacity: 1;
     font-size: 1.2rem;
     filter: invert(1) grayscale(100%) brightness(200%) drop-shadow(0 0 5px rgba(0, 0, 0, 0.7));
+}
+
+.gallery-sub-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
+    height: 100%;
 }
 
 #modal-image {

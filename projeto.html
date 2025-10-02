@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Projeto</title>
+    <link rel="icon" type="image/x-icon" href="/imagens/logo/logo-mobile.png">
     <link rel="shortcut icon" href="/imagens/logo-mobile.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
@@ -148,20 +149,13 @@
     <!-- fim cabeçalho -->
 
     <!-- Botão voltar página de Perfil -->
-    <div class="pd-projeto-header">
-        <div class="container-fluid h-100">
-            <div class="row h-100">
-                <div class="col h-100">
-                    <a href="#" class="d-flex align-items-center text-decoration-none fw-bold h-100 ps-3">
-                        <img src="imagens/icones/return.svg" alt="retornar" class="me-3">
-                        <span>Projeto PD PROJETO</span>
-                    </a>
-                </div>
-            </div>
-        </div>
+    <div class="pd-projeto-botao-voltar">
+        <a href="perfil.html" class="d-flex align-items-center text-decoration-none fw-bold h-100 ps-3">
+            <img src="imagens/icones/return.svg" alt="retornar" class="me-3 botao-voltar-projeto">
+            <span>PD Vitrine</span>
+        </a>
     </div>
     <main class="container-fluid py-3 px-4 main-projeto">
-        <h1 class="project-title">NOME DO PROJETO</h1>
 
         <div class="project-layout-container">
             <div class="project-gallery-column">
@@ -175,18 +169,19 @@
                 <div class="project-info-sidebar">
                     <section class="project-card">
                         <h3>Descrição</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur. Aliquam massa massa orci malesuada id. Porta blandi eu semper tempor. Vitae fringilla scelerisque eu vitae vitae. Fringilla scelerisque eu ipsum cras amet quis adipiscing elit. Cursus tincidunt nunc feugiat consectetur. Non pellentesque vulputate neque neque. Ut amet cras velit natoque neque malesuada condimentum. Lorem diam pharetra feugiat consectetur. Non pellentesque vulputate neque neque odio vitae.</p>
+                        <p>PD Vitrine, a porta de entrada para um ecossistema de talentos. Descubra os perfis e projetos de nossos desenvolvedores mais promissores, um local onde o conhecimento ganha visibilidade e propósito, formando talentos prontos para as demandas do mercado de tecnologia.</p>
                     </section>
 
                     <section class="project-card">
                         <h3>Badges</h3>
                         <div class="badges-container">
+                            <img src="imagens/badges/Figma.svg" alt="Badge Figma" class="badge-icon">
                             <img src="imagens/badges/HTML.svg" alt="Badge HTML" class="badge-icon">
                             <img src="imagens/badges/CSS.svg" alt="Badge CSS" class="badge-icon">
-                            <img src="imagens/badges/Figma.svg" alt="Badge Figma" class="badge-icon">
-                            <img src="imagens/badges/JAVA.svg" alt="Badge Java" class="badge-icon">
                             <img src="imagens/badges/Javascript.svg" alt="Badge JavaScript" class="badge-icon">
                             <img src="imagens/badges/Git.svg" alt="Badge Git" class="badge-icon">
+                            <img src="imagens/badges/Github.svg" alt="Badge GitHub" class="badge-icon">
+                            <img src="imagens/badges/Gitlab.svg" alt="Badge GitLab" class="badge-icon">
                         </div>
                     </section>
 
@@ -202,20 +197,36 @@
                         <h3>Colaboradores</h3>
                         <ul class="list-unstyled collaborators-list">
                             <li class="collaborator-item">
-                                <img src="imagens/icones/user.svg" alt="Ícone de usuário">
-                                <span class="collaborator-name">Leonardo Maciel</span>
-                            </li>
-                            <li class="collaborator-item">
-                                <img src="imagens/icones/user.svg" alt="Ícone de usuário">
+                                <img src="imagens/icones/user.svg" alt="Ícone de usuário" class="profile-pic">
                                 <span class="collaborator-name">Tiago Martins</span>
                             </li>
                             <li class="collaborator-item">
-                                <img src="imagens/icones/user.svg" alt="Ícone de usuário">
+                                <img src="imagens/icones/user.svg" alt="Ícone de usuário" class="profile-pic">
+                                <span class="collaborator-name">Julio Pereira</span>
+                            </li>
+                            <li class="collaborator-item">
+                                <img src="imagens/icones/user.svg" alt="Ícone de usuário" class="profile-pic">
+                                <span class="collaborator-name">Matheus Lopes</span>
+                            </li>
+                            <li class="collaborator-item">
+                                <img src="imagens/icones/user.svg" alt="Ícone de usuário" class="profile-pic">
+                                <span class="collaborator-name">Caio Caldeira</span>
+                            </li>
+                            <li class="collaborator-item">
+                                <img src="imagens/icones/user.svg" alt="Ícone de usuário" class="profile-pic">
                                 <span class="collaborator-name">Emanuel Bravo</span>
                             </li>
                             <li class="collaborator-item">
-                                <img src="imagens/icones/user.svg" alt="Ícone de usuário">
-                                <span class="collaborator-name">Caio Caldeira</span>
+                                <img src="imagens/icones/user.svg" alt="Ícone de usuário" class="profile-pic">
+                                <span class="collaborator-name">Geovanna Alves</span>
+                            </li>
+                            <li class="collaborator-item">
+                                <img src="imagens/icones/user.svg" alt="Ícone de usuário" class="profile-pic">
+                                <span class="collaborator-name">Joao Tavares</span>
+                            </li>
+                            <li class="collaborator-item">
+                                <img src="imagens/icones/user.svg" alt="Ícone de usuário" class="profile-pic">
+                                <span class="collaborator-name">Leonardo Maciel</span>
                             </li>
                         </ul>
                     </section>
