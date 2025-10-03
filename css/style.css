@@ -2359,6 +2359,156 @@ figure {
 /*FIM CARROSSEL*/
 
 
+/* card perfil do index: base */
+.card-index {
+  max-width: 100%;
+  width: 64.8dvw;
+  height: 86.933vw;
+  background-color: var(--cor-bg-card);
+  border-radius: 2em 0 2em;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+  margin: 0;
+}
+
+/* card perfil do index: faixa amarela e foto de perfil */
+.card-index__retangulo-amarelo {
+  width: 100%;
+  height: 5.12em;
+  background-color: var(--amarelo-pd);
+  border-radius: 2em 0 0 0;
+}
+
+.card-index__foto {
+  width: 6.87em;
+  height: 6.87em;
+}
+
+/* card perfil do index: corpo do conteudo*/
+.card-index__conteudo {
+  max-height: 100%;
+  flex: 1;
+  padding: 2.81em 0.62em 0.62em;
+  margin-top: clamp(55px, 7em, 5.85em);
+}
+
+/* card perfil do index: identificadores*/
+.card-index__nome {
+  font-family: var(--font-vollkorn);
+  font-weight: 600;
+  font-size: 1.12em;
+  /* font-size: clamp(1.12em, 1rem + 1vw, 1.688em); */
+  color: var(--branco-forte);
+}
+
+.card-index__descricao {
+  width: 90%;
+  color: var(--branco-forte);
+  font-family: var(--font-raleway);
+  font-weight: 400;
+  font-size: 0.62em;
+  /*  font-size: clamp(0.62em, 2.66vw + 1rem, 0.87em); */
+}
+
+/* card perfil do index: badges*/
+.card-index__badges {
+  max-width: 100%;
+  height: 0.93em;
+  /* height: 0.93em, 4vw + 1rem, 1.144em; */
+}
+
+/* card perfil do index: seção sobre os coordenadores */
+.card-index__icones {
+  max-width: 100%;
+  height: 1.06em;
+  align-self: center;
+  margin: auto;
+}
+
+.card-index__coordenadores>div>h2,
+.card-index__coordenadores>div>p {
+  width: 100%;
+  font-family: var(--font-raleway);
+  font-size: 0.5244rem;
+  color: var(--branco-forte);
+  margin: 0;
+}
+
+/* card perfil do index: botão ver mais */
+.card-index__btn-ver-mais {
+  width: 5.563rem;
+  height: 25px;
+  border-radius: 1.875rem;
+  outline: none;
+  background-color: var(--amarelo-pd);
+  color: var(--preto);
+  font-family: var(--font-raleway);
+  font-weight: 600;
+  font-size: .75rem;
+  cursor: pointer;
+  transition: .3s ease;
+}
+
+
+/* tablet: card perfil index */
+@media (min-width: 500px) {
+
+  /* card perfil do index: base */
+  .card-index {
+    max-width: 313px;
+    height: 421px;
+  }
+
+  /* card perfil do index: foto */
+  .card-index__foto {
+    width: 7.25em;
+    height: 7.25em;
+  }
+
+  /* card perfil do index: identificação*/
+  .card-index__nome {
+    font-size: 1.6875rem;
+  }
+
+  .card-index__descricao {
+    width: 100%;
+    font-size: .875rem;
+  }
+
+  /* card perfil do index: badges */
+  .card-index__badges {
+    height: 18.3px;
+  }
+
+  /* card perfil do index: botão ver mais */
+  .card-index__btn-ver-mais {
+    width: 8.75rem;
+    height: 40px;
+    border-radius: 1.875rem;
+    font-size: 1.125rem;
+  }
+}
+
+@media (hover: hover) {
+
+  /* card perfil do index: botão ver mais */
+  .card-index__btn-ver-mais:hover {
+    background-color: var(--preto);
+    color: var(--amarelo-pd);
+  }
+}
+
+@media (min-width: 1120px) {
+
+  /* card perfil do index: base */
+  .card-index {
+    flex-grow: 1;
+    flex-basis: 22%;
+  }
+}
+
+/* fim card index perfil */
+
+
 @media screen and (min-width: 720px) {
   .titulos-artigos {
     font-weight: 500;
