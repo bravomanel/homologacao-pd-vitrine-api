@@ -2388,11 +2388,36 @@ figure {
     overflow: hidden;
   }
 
+  .caixa-quem-sou-eu {
+    max-height: 120px;
+    overflow-y: auto;
+    box-sizing: border-box;
+    border-right: 5px solid transparent;
+  }
+
+  .caixa-quem-sou-eu::-webkit-scrollbar {
+    width: 8px;
+    height: 110px;
+  }
+
+  .caixa-quem-sou-eu::-webkit-scrollbar-thumb {
+    background: var(--cor-bg-pagina);
+    border-radius: 4px;
+  }
+
+  .caixa-quem-sou-eu::-webkit-scrollbar-track {
+    background: #f4cb1d;
+    border-radius: 4px;
+    margin: 3px 3px;
+  }
+
   .article-quemSou-Formação p {
-    margin-top: clamp(0px, 0.69vw, 8px);
-    margin-left: clamp(0px, 0.69vw, 10px);
-    margin-right: clamp(0px, 0.69vw, 10px);
+    margin-top: 2px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
     padding: 5px;
+    overflow: auto;
   }
 
   .article-quemSou-Formação ul {
