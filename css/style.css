@@ -2360,6 +2360,9 @@ figure {
 
 
 /* card perfil do index: base */
+.margem-top{
+  margin: 3em 0 0 0;
+}
 .card-index {
   max-width: 100%;
   width: 64.8dvw;
