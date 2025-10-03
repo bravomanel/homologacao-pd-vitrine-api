@@ -827,7 +827,8 @@ header {
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: center;
-    margin-top: 100px;
+    align-items: flex-start;
+    margin-top: clamp(50px, 6.94vw, 100px);
     gap: 35px;
   }
 
@@ -849,7 +850,8 @@ header {
     overflow: hidden;
     width: 28.81vw;
     max-width: 415px;
-    height: fit-content;
+    height: 47.91vw;
+    max-height: 690px;
     /*impedir overflow*/
     border-radius: 32px 0px 32px 0px;
   }
