@@ -2389,9 +2389,9 @@ figure {
   }
 
   .article-quemSou-Formação p {
-    margin-top: 10px;
-    margin-left: 11px;
-    margin-right: 11px;
+    margin-top: clamp(0px, 0.69vw, 8px);
+    margin-left: clamp(0px, 0.69vw, 10px);
+    margin-right: clamp(0px, 0.69vw, 10px);
     padding: 5px;
   }
 
