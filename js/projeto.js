@@ -1,21 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const projectImages = [
-        'imagens/projetos/vitrine (4).png',
-        'imagens/projetos/vitrine (5).png',
-        'imagens/projetos/vitrine (1).png',
-        'imagens/projetos/vitrine (3).png',
-        'imagens/projetos/vitrine (2).png',
-        'imagens/projetos/vitrine (6).png',
-        'imagens/projetos/vitrine (7).png',
-        'imagens/projetos/vitrine (8).png'
-
-    ];
-
     const carouselContainer = document.getElementById('project-carousel-mobile');
     const galleryContainer = document.getElementById('project-gallery-desktop');
     const galleryModal = document.getElementById('gallery-modal');
     const modalImage = document.getElementById('modal-image');
-
+    
     let currentIndex = 0;
 
     function updateModalImage(index) {
@@ -27,14 +15,14 @@ document.addEventListener('DOMContentLoaded', function () {
     // carrosel mobile
     function renderCarousel() {
         if (!carouselContainer || projectImages.length === 0) return;
-
+        
         const items = projectImages.map((src, index) =>
             `<div class="carousel-item ${index === 0 ? 'active' : ''}">
                 <img src="${src}" class="d-block w-100 main-project-image" alt="Imagem ${index + 1}"
                      data-bs-toggle="modal" data-bs-target="#gallery-modal" data-index="${index}">
             </div>`
         ).join('');
-
+        
         const indicators = projectImages.map((_, index) => `<button type="button" data-bs-target="#projectCarousel" data-bs-slide-to="${index}" class="${index === 0 ? 'active' : ''}" aria-current="${index === 0 ? 'true' : 'false'}" aria-label="Slide ${index + 1}"></button>`).join('');
         const carouselHTML = `<div id="projectCarousel" class="carousel slide" data-bs-ride="carousel"><div class="carousel-indicators">${indicators}</div><div class="carousel-inner">${items}</div><button class="carousel-control-prev" type="button" data-bs-target="#projectCarousel" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></button><button class="carousel-control-next" type="button" data-bs-target="#projectCarousel" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></button></div>`;
         carouselContainer.innerHTML = carouselHTML;
@@ -64,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
             let subGridHTML = '<div class="gallery-sub-grid">';
             const maxInSubGrid = 4;
             const subGridImages = projectImages.slice(2, 2 + maxInSubGrid);
-            const hiddenCount = totalImages - 6;
+            const hiddenCount = totalImages - 6; 
 
             subGridImages.forEach((src, i) => {
                 const imageIndex = 2 + i; // índice real da imagem no array principal
