@@ -19,7 +19,7 @@ body {
 header {
   background-color: var(--cor-bg-card);
   border-bottom: 3px solid var(--amarelo-pd);
-  width: 100%;
+  max-width: 100%;
   height: 3.75rem;
   padding: 0 1.25em;
 }
@@ -489,7 +489,7 @@ header {
 
   /* cabeçalho */
   header {
-    width: 100%;
+    max-width: 100%;
     height: 6.35rem;
     padding: 0 3.75em;
   }
@@ -2081,7 +2081,7 @@ figure {
 
   #carrossel-mobile .carousel-inner {
     aspect-ratio: 360 / 160;
-    width: 100vw;
+    width: 100%;
     background-color: #243650;
     margin: 0 auto;
   }
@@ -2237,7 +2237,7 @@ figure {
 
 #carrossel-mobile .carousel-inner {
   aspect-ratio: 360 / 160;
-  width: 100vw;
+  width: 100%;
   background-color: #243650;
   margin: 0 auto;
 }
@@ -2289,7 +2289,7 @@ figure {
 
   #carrossel-desktop {
     display: block;
-    width: 100vw;
+    width: 100%;
     margin: 0 auto;
     padding: 0;
   }
