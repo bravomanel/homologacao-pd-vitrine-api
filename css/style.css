@@ -837,7 +837,7 @@ header {
     /*distância do header*/
     margin: 0 !important;
     /*distância da margem da página*/
-
+    height: 100%;
   }
 
   .entre-linhas {
@@ -2360,9 +2360,10 @@ figure {
 
 
 /* card perfil do index: base */
-.margem-top{
+.margem-top {
   margin: 3em 0 0 0;
 }
+
 .card-index {
   max-width: 100%;
   width: 64.8dvw;
@@ -2524,15 +2525,16 @@ figure {
     display: flex;
     flex-direction: column;
     align-items: start;
-    gap: 20px;
+    gap: clamp(0px, 1.25vw, 12px);
     margin: 0 !important;
   }
 
   .article-quemSou-Formação {
     width: 52vw;
     max-width: 750px;
-    height: fit-content;
+    height: 13.19vw;
     max-height: 190px;
+    min-height: fit-content;
     /*Atenção*/
     background-color: #161D26;
     font-size: clamp(10px, 1.11vw, 16px);
@@ -2587,7 +2589,9 @@ figure {
     background-color: #F4CB1D;
     border-radius: 32px 0px 0px 0px;
     width: 100%;
-    height: 48px;
+    max-height: 48px;
+    height: 3.33vw;
+    min-height: 40px;
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -2609,7 +2613,9 @@ figure {
   #article-badges {
     width: 52vw;
     max-width: 750px;
-    height: fit-content;
+    height: 19.44vw;
+    max-height: 280px;
+    min-height: 263px;
     background-color: #161D26;
     font-size: 17px;
     color: white;
@@ -2617,7 +2623,7 @@ figure {
     border-radius: 10px;
     font-weight: 400;
     border-radius: 32px 0px 32px 0px;
-
+    overflow: hidden;
   }
 
   .estrelas-badges {
@@ -2656,6 +2662,8 @@ figure {
 
   .badges-section {
     max-height: 215px;
+    height: 14.93vw;
+    min-height: 177px;
     overflow-y: auto;
     overflow-x: hidden;
     display: flex;
