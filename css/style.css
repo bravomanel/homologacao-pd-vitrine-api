@@ -2391,6 +2391,10 @@ figure {
     height: 6.87em;
 }
 
+    .foto-usuario {
+        border-radius: 100%;
+    }
+
 /* card perfil do index: corpo do conteudo*/
 .card-index__conteudo {
     max-height: 100%;
