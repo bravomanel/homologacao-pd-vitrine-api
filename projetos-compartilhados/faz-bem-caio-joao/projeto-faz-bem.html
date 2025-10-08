@@ -13,13 +13,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&family=Vollkorn:wght@700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
-<header class="d-flex flex-row align-items-center justify-content-between m-0">
+    <!-- cabeçalho -->
+    <header class="d-flex flex-row align-items-center justify-content-between m-0">
         <!-- logo -->
-        <a href="index.html">
+        <a href="../../index.html">
             <!-- logo aparece somente no desktop -->
             <img src="/imagens/logo/logo-desktop.png" id="logo-desktop"
                 alt="Logo da PD Vitrine: a letra P com gradiente branco e amarelo, a letra D também em gradiente branco e amarelo, e abaixo a palavra 'Vitrine' em branco."
@@ -72,6 +73,9 @@
             </button>
         </nav>
 
+
+
+
         <!-- Modal sistemas mobile-->
         <article class="modal fade" id="btn-sistemaModal" tabindex="-1" aria-labelledby="btn-sistemaLabel"
             aria-hidden="true">
@@ -114,7 +118,7 @@
                                     <div class="custom-dropdown">
                                         <div class="dropdown-select badge-select" tabindex="0" data-value="">
                                             <span>Badges</span>
-                                            <img src="imagens/icones/down.svg" class="dropdown-arrow icon"
+                                            <img src="/imagens/icones/down.svg" class="dropdown-arrow icon"
                                                 alt="seta para abrir">
                                         </div>
                                         <div class="dropdown-menu-custom badge-dropdown-menu"></div>
@@ -124,7 +128,7 @@
                                     <div class="custom-dropdown">
                                         <div class="dropdown-select level-select" tabindex="0" data-value="">
                                             <span>Níveis de experiência</span>
-                                            <img src="imagens/icones/down.svg" class="dropdown-arrow icon"
+                                            <img src="/imagens/icones/down.svg" class="dropdown-arrow icon"
                                                 alt="seta para abrir">
                                         </div>
                                         <div class="dropdown-menu-custom level-dropdown-menu"></div>
@@ -150,11 +154,30 @@
     </header>
     <!-- fim cabeçalho -->
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <!-- Botão voltar página de Perfil -->
     <div class="pd-projeto-botao-voltar">
-        <a href="/index.html" class="d-flex align-items-center text-decoration-none fw-bold ps-3">
-            <img src="imagens/icones/return.svg" alt="retornar" class="botao-voltar-projeto">
-            <span>PD EAD</span>
+        <a href="/paginas-caio/perfil-caio.html" class="d-flex align-items-center text-decoration-none fw-bold ps-3">
+            <img src="/imagens/icones/return.svg" alt="retornar" class="botao-voltar-projeto">
+            <span>Supermercado Faz-bem</span>
         </a>
     </div>
     <main class="container-fluid py-3 px-4 main-projeto">
@@ -171,50 +194,60 @@
                 <div class="project-info-sidebar">
                     <section class="project-card">
                         <h3>Descrição</h3>
-                        <p>Conhecimento onde você estiver - Aqui o ensino a distância ganha qualidade e propósito, formando talentos prontos para os desafios do futuro.</p>
+                        <p>O projeto Supermercado Faz Bem foi um site fictício desenvolvido em parceria
+                            entre Caio e João, representando o primeiro projeto feito em conjunto. A proposta foi
+                            criar uma página moderna e funcional para um supermercado, aplicando conceitos
+                            aprendidos em sala e colocando em prática o trabalho em equipe.
+
+                            O design foi criado no Figma, onde foram definidos o layout, as cores e os elementos
+                            visuais.
+                            Na parte de desenvolvimento, utilizamos HTML, CSS e Bootstrap para estruturar e estilizar o
+                            site, garantindo responsividade e boa navegação em diferentes dispositivos.
+
+                            O Supermercado Faz Bem marcou um passo importante no aprendizado, unindo criatividade,
+                            colaboração e técnica. O projeto ajudou a fortalecer o domínio das ferramentas e a
+                            experiência
+                            de desenvolver um site completo em dupla, com foco em organização e funcionalidade.</p>
                     </section>
 
                     <section class="project-card">
                         <h3>Badges</h3>
                         <div class="badges-container">
-                            <img src="imagens/badges/HTML.svg" alt="Badge HTML" class="badge-item">
-                            <img src="imagens/badges/CSS.svg" alt="Badge CSS" class="badge-item">
-                            <img src="imagens/badges/Javascript.svg" alt="Badge JavaScript" class="badge-item">
-                            <img src="imagens/badges/Angular.svg" alt="Badge Angular" class="badge-item">
-                            <img src="imagens/badges/Figma.svg" alt="Badge Figma" class="badge-item">
-                            <img src="imagens/badges/Scrum.svg" alt="Badge Scrum" class="badge-item">
-                            <img src="imagens/badges/SpringBoot.svg" alt="Badge Spring Boot" class="badge-item">
-                            <img src="imagens/badges/JAVA.svg" alt="Badge Java" class="badge-item">
-                            <img src="imagens/badges/Insomnia.svg" alt="Badge Insomnia" class="badge-item">
-                            <img src="imagens/badges/Git.svg" alt="Badge Git" class="badge-item">
-                            <img src="imagens/badges/Docker.svg" alt="Badge Docker" class="badge-item">
-                            <img src="imagens/badges/Swagger.svg" alt="Badge Swagger" class="badge-item">
+                            <img src="/imagens/badges/HTML.svg" alt="Badge HTML" class="badge-item">
+                            <img src="/imagens/badges/CSS.svg" alt="Badge CSS" class="badge-item">
+                            <img src="/imagens/badges/Bootstrap.svg" alt="Badge CSS" class="badge-item">
+                            <img src="/imagens/badges/Figma.svg" alt="Badge CSS" class="badge-item">
+
+
+
+
+
                         </div>
                     </section>
 
                     <section class="project-card">
                         <h3>Links</h3>
                         <div class="projects-links-container">
-                            <a href="https://talentos.pdcase.com/" class="btn btn-project">Aplicação</a>
-                            <a href="https://talentos.pdcase.com/" class="btn btn-project">Repositório</a>
+                            <a href="https://supermercado-faz-bem.vercel.app/" class="btn btn-project">Aplicação</a>
+                            <a href="https://github.com/caiomartins8/Supermercado-Faz-bem"
+                                class="btn btn-project">Repositório</a>
                         </div>
                     </section>
 
                     <section class="project-card">
                         <h3>Colaboradores</h3>
                         <ul class="list-unstyled collaborators-list">
+
                             <li class="collaborator-item">
-                                <img src="imagens/icones/user.svg" alt="Ícone de usuário" class="profile-pic">
-                                <span class="collaborator-name">Tiago Martins</span>
+                                <img src="/imagens/icones/user.svg" alt="Ícone de usuário" class="profile-pic">
+                                <span class="collaborator-name">Caio Caldeira</span>
                             </li>
-                            <li class="collaborator-item">
-                                <img src="imagens/icones/user.svg" alt="Ícone de usuário" class="profile-pic">
-                                <span class="collaborator-name">Julio Pereira</span>
+
+                             <li class="collaborator-item">
+                                <img src="/imagens/icones/user.svg" alt="Ícone de usuário" class="profile-pic">
+                                <span class="collaborator-name">João Tavares</span>
                             </li>
-                            <li class="collaborator-item">
-                                <img src="imagens/icones/user.svg" alt="Ícone de usuário" class="profile-pic">
-                                <span class="collaborator-name">Matheus Lopes</span>
-                            </li>
+
                         </ul>
                     </section>
                 </div>
@@ -227,7 +260,7 @@
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
                 <button class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                
+
                 <div class="modal-body">
                     <img class="img-fluid" id="modal-image" src="" alt="Imagem do projeto em destaque">
                 </div>
@@ -240,16 +273,20 @@
 
     <script>
         const projectImages = [
-            'imagens/projetos/pdead/tela login.png',
-            'imagens/projetos/pdead/tela forum.png',
-            'imagens/projetos/pdead/tela certificado.png',
-            'imagens/projetos/pdead/tela cadastrar projeto.png',
-            'imagens/projetos/pdead/pd case ead.png',
-            'imagens/projetos/pdead/dash usuario.png',
-            'imagens/projetos/pdead/dash curso.png',
-            'imagens/projetos/pdead/cadastrar usuario.png',
-            'imagens/projetos/pdead/criando topico forum.png',
-            'imagens/projetos/pdead/dash prof com atualizaçao.png'
+            '../../imagens/projetos/supermercado-faz-bem-caio-joao/image.png',
+            '../../imagens/projetos/supermercado-faz-bem-caio-joao/image1.png',
+            '../../imagens/projetos/supermercado-faz-bem-caio-joao/image2.png',
+            '../../imagens/projetos/supermercado-faz-bem-caio-joao/image3.png',
+            '../../imagens/projetos/supermercado-faz-bem-caio-joao/image4.png',
+            '../../imagens/projetos/supermercado-faz-bem-caio-joao/image5.png',
+            '../../imagens/projetos/supermercado-faz-bem-caio-joao/image6.png',
+            '../../imagens/projetos/supermercado-faz-bem-caio-joao/image7.png',
+            '../../imagens/projetos/supermercado-faz-bem-caio-joao/image8.png',
+
+
+
+
+
         ];
     </script>
 
@@ -257,8 +294,7 @@
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
 
-    <script src="js/projeto.js"></script>
-    <script src="/js/index.js"></script>
+    <script src="/js/projeto.js"></script>
 </body>
 
 </html>
