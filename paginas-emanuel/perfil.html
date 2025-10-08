@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil - PD Vitrine</title>
+    <link rel="shortcut icon" href="/imagens/logo/logo-mobile.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Vollkorn:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <!-- cabeçalho -->
+    <header class="d-flex flex-row align-items-center justify-content-between m-0">
+        <!-- logo -->
+        <a href="/index.html">
+            <!-- logo aparece somente no desktop -->
+            <img src="/imagens/logo/logo-desktop.png" id="logo-desktop"
+                alt="Logo da PD Vitrine: a letra P com gradiente branco e amarelo, a letra D também em gradiente branco e amarelo, e abaixo a palavra 'Vitrine' em branco."
+                id="logo" loading="eager">
+            <!-- logo aparece somente no mobile -->
+            <img src="/imagens/logo/logo-mobile.png" id="logo-mobile"
+                alt="Logo da PD Vitrine: a letra P com gradiente branco e amarelo, a letra D também em gradiente branco e amarelo, e abaixo a palavra 'Vitrine' em branco."
+                id="logo" loading="eager">
+
+        </a>
+        <!-- menus -->
+        <nav class="d-flex flex-row align-items-center justify-content-between gap-2 gap-md-3">
+            <!--input modal filtragem / pesquisa -->
+            <form id="modal__filtragem" class="d-flex align-items-center gap-2 px-1 px-md-3" role="search"
+                data-bs-toggle="modal" data-bs-target="#filterModal">
+                <!-- icone para mobile e/ou icone de pesquisar -->
+                <img src="/imagens/icones/search.svg" alt="icone de pesquisar" id="icone-pesquisar"
+                    class="m-auto p-auto">
+
+                <input class="form-control border border-0 p-0" type="search"
+                    placeholder="Encontre o profissional desejado..." aria-label="Search" />
+            </form>
+
+            <!-- botão suspenso sistemas para desktop-->
+            <div class="dropdown">
+                <button
+                    class="btn-sistema mobile__btn-sistema d-none d-md-inline-flex justify-content-center align-items-center"
+                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+
+                    <img src="/imagens/icones/icone-sistemas.svg" alt="" id="icone-sistema" class="m-auto p-auto">
+
+                    <h3 class="p-0 m-0">Sistemas</h3>
+                </button>
+                <!-- opções suspensa -->
+                <ul class="dropdown-menu m-0 p-0">
+                    <li>
+                        <h6 class="dropdown-header">Sistemas</h6>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="https://talentos.pdcase.com/ead/">PD EAD</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Botão modal sistema mobile-->
+            <button class="btn-sistema d-inline-flex justify-content-center align-items-center d-sm-flex d-md-none"
+                type="button" data-bs-toggle="modal" data-bs-target="#btn-sistemaModal">
+
+                <img src="/imagens/icones/icone-sistemas.svg" alt="" id="icone-sistema" class="m-auto p-auto">
+            </button>
+        </nav>
+
+        <!-- Modal sistemas mobile-->
+        <article class="modal fade" id="btn-sistemaModal" tabindex="-1" aria-labelledby="btn-sistemaLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal__sistemas">
+                <div class="modal-content cor-bg"><!-- conteúdos do modal -->
+                    <div class="modal-header modal__sistemas-header d-flex align-items-center justify-content-center">
+                        <h1 class="fs-5 m-0 p-0" id="btn-sistemaLabel">Sistemas</h1>
+
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body m-0 p-0"><!-- opções de sistemas -->
+                        <a class="dropdown-item" href="https://talentos.pdcase.com/ead/">PD EAD</a>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- modal filtragem / pesquisar -->
+        <div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
+
+            <div class="modal-dialog modal-dialog-centered">
+
+                <button type="button" class="btn-close-modal-mobile d-flex d-md-none" data-bs-dismiss="modal"
+                    aria-label="Close">
+                    <img src="/imagens/icones/close.svg" alt="Fechar modal">
+                </button>
+                <div class="modal-content borda-amarelo">
+                    <div class="modal-body">
+                        <h2 class="modal-title" id="filterModalLabel">Filtragem</h2>
+
+                        <div class="filter-section">
+                            <input type="text" class="form-control filter-input" id="filter-name"
+                                placeholder="Pesquisar pelo o nome...">
+
+                            <div id="added-filters-container">
+                            </div>
+
+                            <div class="filter-row-layout" id="selection-row">
+                                <div class="badge-column">
+                                    <div class="custom-dropdown">
+                                        <div class="dropdown-select badge-select" tabindex="0" data-value="">
+                                            <span>Badges</span>
+                                            <img src="/imagens/icones/down.svg" class="dropdown-arrow icon"
+                                                alt="seta para abrir">
+                                        </div>
+                                        <div class="dropdown-menu-custom badge-dropdown-menu"></div>
+                                    </div>
+                                </div>
+                                <div class="level-column">
+                                    <div class="custom-dropdown">
+                                        <div class="dropdown-select level-select" tabindex="0" data-value="">
+                                            <span>Níveis de experiência</span>
+                                            <img src="/imagens/icones/down.svg" class="dropdown-arrow icon"
+                                                alt="seta para abrir">
+                                        </div>
+                                        <div class="dropdown-menu-custom level-dropdown-menu"></div>
+                                    </div>
+                                </div>
+                                <div class="action-column">
+                                    <button class="btn-add-filter" id="add-filter-btn" aria-label="Adicionar filtro">
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="action-buttons">
+                                <button type="button" class="btn-filter-action" id="search-btn">PESQUISAR</button>
+                                <button type="button" class="btn-filter-action" id="clear-btn">LIMPAR</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- fim modal filtragem -->
+
+    </header>
+
+    <div class="card-perfil-e-cards-informacoes">
+        <article class="card-perfil">
+            <div class="conteudo-card-perfil d-flex flex-column align-items-center">
+                <div class="retangulo-amarelo"></div>
+                <img class="foto-usuario rounded-circle" src="/imagens/fotos-de-perfil/emanuel.jpg"
+                    alt="Foto de perfil do usuário">
+                <h2 class="nome text-white font-vollkorn m-0">Emanuel Bravo</h2>
+                <p class="descricao text-white text-align-center font-raleway m-0 text-center entre-linhas">
+                    Desenvolvedor de Software | Criação de Sites | Sistemas Web | Automação
+                </p>
+                <div class="lideres">
+                    <div id="primeiro-lider" class="lider d-flex flex-row font-raleway">
+                        <img class="img-lider" src="/imagens/icones/Responsável Tecnico.svg">
+                        <div class="d-flex flex-column espaco-cargo-nome">
+                            <p class="fw-normal text-white m-0 texto-abraco"><strong id="resp-tec-texto">Responsável
+                                    Técnico:</strong></p>
+                            <p class="nome-lider text-white m-0 texto-abraco">Matheus Lopes</p>
+                        </div>
+                    </div>
+                    <div class="lider d-flex flex-row font-raleway f12">
+                        <img class="img-lider" src="/imagens/icones/Supervisor.svg">
+                        <div class="d-flex flex-column espaco-cargo-nome">
+                            <p class="fw-normal text-white m-0 texto-abraco"><strong>Supervisor:</strong></p>
+                            <p class="nome-lider text-white m-0 texto-abraco">Tiago Martins</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="baixar-curriculo">
+                    <p class="baixar-curriculo-texto font-raleway fw-bold texto-abraco">Baixar Currículo</p>
+                    <img src="/imagens/icones/download.svg">
+                </button>
+                <div class="icons-sociais">
+                    <a href="#"><img class="icon-social" src="/imagens/icones/teams.png"></a>
+                    <a href="#"><img class="icon-social" src="/imagens/icones/gitlab.png"></a>
+                    <a href="#"><img class="icon-social" src="/imagens/icones/linkedin.png"></a>
+                </div>
+            </div>
+        </article>
+
+        <section id="section-informacoes">
+
+            <article class="article-quemSou-Formação">
+                <div class=" back-amarelo">
+                    <h1 class="titulos-artigos">Quem sou eu ?</h1>
+                </div>
+                <p class="caixa-quem-sou-eu">
+                    Atualmente estudando Ciência da Computação na UFF, sou estagiário desenvolvedor na PD Case, onde
+                    aplico minhas habilidades em projetos reais, colaborando com equipes multidisciplinares para
+                    entregar soluções eficazes.
+
+                    Com conhecimentos tanto no back-end quanto no front-end, e experiência em projetos que envolvem
+                    cloud, banco de dados e VPS. Na minha trajetória já participei do ciclo de vida completo de
+                    aplicações web, desde a concepção até o deploy em nuvem.
+                </p>
+            </article>
+
+            <article class="article-quemSou-Formação quemSou2">
+                <div class=" back-amarelo">
+                    <h1 class="titulos-artigos">Formações</h1>
+                </div>
+                <ul id="formacao-mobile">
+                    <li>Cursando Bacharel em Ciência da Computação - UFF Rio das Ostras - 2022</li>
+                    <li>Técnico em Eletrônica - IFF Macaé - 2019</li>
+                    <li>Inglês Avançado</li>
+                </ul>
+                <ul id="formacao-desktop">
+                    <li>Cursando Bacharel em Ciência da Computação - UFF Rio das Ostras - 2022</li>
+                    <li>Técnico em Eletrônica - IFF Macaé - 2019</li>
+                    <li>Inglês Avançado</li>
+                </ul>
+            </article>
+
+            <article id="article-badges">
+                <div class=" back-amarelo">
+                    <h1 class="titulos-artigos">Badges</h1>
+                </div>
+
+                <div class="badges-section">
+                    <div class="container-badges">
+                    <div class="badges">
+
+                        <figure class="badge-house"><img class="badge-icon" src="/imagens/badges/HTML.svg" alt="">
+                            <figcaption></figcaption>
+                        </figure>
+
+                        <p class="exp-texto">Avançado</p>
+
+                        <div class="estrelas-badges">
+
+                            <figure><img src="/imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-vazia.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+
+                        </div>
+
+                    </div>
+
+                    <div class="badges">
+
+                        <figure class="badge-house"><img class="badge-icon" src="/imagens/badges/CSS.svg" alt="">
+                            <figcaption></figcaption>
+                        </figure>
+
+                        <p class="exp-texto">Avançado</p>
+
+                        <div class="estrelas-badges">
+
+                            <figure><img src="/imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-vazia.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+
+                        </div>
+
+                    </div>
+                    
+                    </div>
+                    <div class="container-badges">
+
+                    <div class="badges">
+
+                        <figure class="badge-house"><img class="badge-icon" src="/imagens/badges/Javascript.svg"
+                                alt="">
+                            <figcaption></figcaption>
+                        </figure>
+
+                        <p class="exp-texto">Avançado</p>
+
+                        <div class="estrelas-badges">
+
+                            <figure><img src="/imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-vazia.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+
+                        </div>
+
+                    </div>
+
+                    <div class="badges">
+
+                        <figure class="badge-house"><img class="badge-icon" src="/imagens/badges/Git.svg" alt="">
+                            <figcaption></figcaption>
+                        </figure>
+
+                        <p class="exp-texto">Intermediário</p>
+
+                        <div class="estrelas-badges">
+
+                            <figure><img src="/imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-vazia.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-vazia.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+
+                        </div>
+
+                    </div>
+                    
+                    </div>
+                    <div class="container-badges">
+
+                    <div class="badges">
+
+                        <figure class="badge-house"><img class="badge-icon" src="/imagens/badges/Docker.svg" alt="">
+                            <figcaption></figcaption>
+                        </figure>
+
+                        <p class="exp-texto">Intermediário</p>
+
+                        <div class="estrelas-badges">
+
+                            <figure><img src="/imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-vazia.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-vazia.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+
+                        </div>
+
+                    </div>
+
+                    <div class="badges">
+
+                        <figure class="badge-house"><img class="badge-icon" src="/imagens/badges/Figma.svg" alt="">
+                            <figcaption></figcaption>
+                        </figure>
+
+                        <p class="exp-texto">Básico</p>
+
+                        <div class="estrelas-badges">
+
+                            <figure><img src="/imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-vazia.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-vazia.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-vazia.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+
+                        </div>
+
+                    </div>
+                    
+                    </div>
+                    <div class="container-badges">
+
+                    <div class="badges">
+
+                        <figure class="badge-house"><img class="badge-icon" src="/imagens/badges/Bootstrap.svg" alt="">
+                            <figcaption></figcaption>
+                        </figure>
+
+                        <p class="exp-texto">Intermediário</p>
+
+                        <div class="estrelas-badges">
+
+                            <figure><img src="/imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-vazia.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-vazia.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+
+                        </div>
+
+                    </div>
+
+                    <div class="badges">
+
+                        <figure class="badge-house"><img class="badge-icon" src="/imagens/badges/Java.svg" alt="">
+                            <figcaption></figcaption>
+                        </figure>
+
+                        <p class="exp-texto">Básico</p>
+
+                        <div class="estrelas-badges">
+
+                            <figure><img src="/imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-vazia.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-vazia.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-vazia.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+
+                        </div>
+
+                    </div>
+                    
+                    </div>
+                    <div class="container-badges">
+
+                    <div class="badges">
+
+                        <figure class="badge-house"><img class="badge-icon" src="/imagens/badges/Python.svg" alt="">
+                            <figcaption></figcaption>
+                        </figure>
+
+                        <p class="exp-texto">Intermediário</p>
+
+                        <div class="estrelas-badges">
+
+                            <figure><img src="/imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-vazia.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-vazia.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+
+                        </div>
+
+                    </div>
+
+                    <div class="badges">
+
+                        <figure class="badge-house"><img class="badge-icon" src="/imagens/badges/PostgreSQL.svg" alt="">
+                            <figcaption></figcaption>
+                        </figure>
+
+                        <p class="exp-texto">Intermediário</p>
+
+                        <div class="estrelas-badges">
+
+                            <figure><img src="/imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-vazia.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-vazia.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+
+                        </div>
+
+                    </div>
+                    
+                    </div>
+                    <div class="container-badges">
+
+                    <div class="badges">
+
+                        <figure class="badge-house"><img class="badge-icon" src="/imagens/badges/SQLite.svg" alt="">
+                            <figcaption></figcaption>
+                        </figure>
+
+                        <p class="exp-texto">Intermediário</p>
+
+                        <div class="estrelas-badges">
+
+                            <figure><img src="/imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-vazia.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-vazia.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+
+                        </div>
+
+                    </div>
+
+                    <div class="badges">
+
+                        <figure class="badge-house"><img class="badge-icon" src="/imagens/badges/PHP.svg" alt="">
+                            <figcaption></figcaption>
+                        </figure>
+
+                        <p class="exp-texto">Básico</p>
+
+                        <div class="estrelas-badges">
+
+                            <figure><img src="/imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-vazia.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-vazia.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-vazia.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+
+                        </div>
+
+                    </div>
+                    
+                    </div>
+                    <div class="container-badges">
+
+                    <div class="badges">
+
+                        <figure class="badge-house"><img class="badge-icon" src="/imagens/badges/mysql.svg" alt="">
+                            <figcaption></figcaption>
+                        </figure>
+
+                        <p class="exp-texto">Básico</p>
+
+                        <div class="estrelas-badges">
+
+                            <figure><img src="/imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-vazia.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-vazia.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-vazia.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+
+                        </div>
+
+                    </div>
+
+                    <div class="badges">
+
+                        <figure class="badge-house"><img class="badge-icon" src="/imagens/badges/react.svg" alt="">
+                            <figcaption></figcaption>
+                        </figure>
+
+                        <p class="exp-texto">Iniciante</p>
+
+                        <div class="estrelas-badges">
+
+                            <figure><img src="/imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-vazia.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-vazia.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-vazia.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-vazia.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+
+                        </div>
+
+                    </div>
+                    
+                    </div>
+                    <div class="container-badges">
+
+                    <div class="badges">
+
+                        <figure class="badge-house"><img class="badge-icon" src="/imagens/badges/C++.svg" alt="">
+                            <figcaption></figcaption>
+                        </figure>
+
+                        <p class="exp-texto">Intermediário</p>
+
+                        <div class="estrelas-badges">
+
+                            <figure><img src="/imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-vazia.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+                            <figure><img src="/imagens/icones/estrela-vazia.svg" alt="" class="icon-estrela">
+                                <figcaption></figcaption>
+                            </figure>
+
+                        </div>
+
+                    </div>
+                
+                </div>
+                </div>
+
+            </article>
+
+
+        </section>
+    </div>
+
+    <section id="section-card-projeto-tela-perfil">
+        <div class="container-meus-projetos">
+            <h2 class="title-meus-projetos">Meus Projetos</h2>
+            <div class="container-card-tela-perfil">
+
+                <div class="card-tela-perfil">
+                    <figure class="figure-card-tela-perfil">
+                        <img src="/imagens/projetos/emanuel/fake-youtube/logo.png" alt="" class="img-card-tela-perfil">
+                        <figcaption>foto de perfil</figcaption>
+                    </figure>
+                    <div class="conteudo-card-tela-perfil">
+                        <div class="titulo-descricao-tela-perfil">
+                            <h2 class="title-card-tela-perfil">Fake Youtube</h2>
+                            <p class="descricao-card-tela-perfil">Réplica do Youtube, com a intenção de aprimorar os conhecimentos em HTML, CSS e Bootstrap.</p>
+                        </div>
+                        <div class="badges-card-projeto">
+                            <img src="/imagens/badges/HTML.svg" alt="HTML">
+                            <img src="/imagens/badges/CSS.svg" alt="CSS">
+                            <img src="/imagens/badges/Bootstrap.svg" alt="Bootstrap">
+                            <img src="/imagens/badges/Git.svg" alt="Git">
+                        </div>
+
+                        <a href="/paginas-emanuel/projeto/fake-youtube.html" class="link-ver-mais">
+                            <button class="btn-ver-mais">Ver Mais</button>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="card-tela-perfil">
+                    <figure class="figure-card-tela-perfil">
+                        <img src="/imagens/projetos/emanuel/barber/logo.png" alt="" class="img-card-tela-perfil">
+                        <figcaption>foto de perfil</figcaption>
+                    </figure>
+                    <div class="conteudo-card-tela-perfil">
+                        <div class="titulo-descricao-tela-perfil">
+                            <h2 class="title-card-tela-perfil">FSW Barber</h2>
+                            <p class="descricao-card-tela-perfil">O FSW Barber é um sistema de agendamento online projetado para revolucionar a forma como clientes e barbearias se conectam.</p>
+                        </div>
+                        <div class="badges-card-projeto">
+                            <img src="/imagens/badges/Figma.svg" alt="Badge Figma" class="badge-item">
+                            <img src="/imagens/badges/HTML.svg" alt="Badge HTML" class="badge-item">
+                            <img src="/imagens/badges/CSS.svg" alt="Badge CSS" class="badge-item">
+                            <img src="/imagens/badges/Git.svg" alt="Badge Git" class="badge-item">
+                        </div>
+
+                        <a href="/paginas-emanuel/projeto/barbearia.html" class="link-ver-mais">
+                            <button class="btn-ver-mais">Ver Mais</button>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card-tela-perfil">
+                    <figure class="figure-card-tela-perfil">
+                        <img src="/imagens/projetos/emanuel/forca/logo.png" alt="" class="img-card-tela-perfil">
+                        <figcaption>foto de perfil</figcaption>
+                    </figure>
+                    <div class="conteudo-card-tela-perfil">
+                        <div class="titulo-descricao-tela-perfil">
+                            <h2 class="title-card-tela-perfil">Jogo da Forca</h2>
+                            <p class="descricao-card-tela-perfil">Jogo da Forca feito com HTML, CSS e JavaScript.</p>
+                        </div>
+                        <div class="badges-card-projeto">
+                            <img src="/imagens/badges/HTML.svg" alt="HTML">
+                            <img src="/imagens/badges/CSS.svg" alt="CSS">
+                            <img src="/imagens/badges/JavaScript.svg" alt="JavaScript">
+                            <img src="/imagens/badges/Bootstrap.svg" alt="Bootstrap">
+                            <img src="/imagens/badges/Git.svg" alt="Git">
+                        </div>
+
+                        <a href="/paginas-emanuel/projeto/forca.html" class="link-ver-mais">
+                            <button class="btn-ver-mais">Ver Mais</button>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card-tela-perfil">
+                    <figure class="figure-card-tela-perfil">
+                        <img src="/imagens/projetos/emanuel/maioridade-steam/logo.png" alt="" class="img-card-tela-perfil">
+                        <figcaption>foto de perfil</figcaption>
+                    </figure>
+                    <div class="conteudo-card-tela-perfil">
+                        <div class="titulo-descricao-tela-perfil">
+                            <h2 class="title-card-tela-perfil">Steam - Maioridade</h2>
+                            <p class="descricao-card-tela-perfil">Sistema de checagem de idade mínima para acessar páginas.</p>
+                        </div>
+                        <div class="badges-card-projeto">
+                            <img src="/imagens/badges/HTML.svg" alt="HTML">
+                            <img src="/imagens/badges/CSS.svg" alt="CSS">
+                            <img src="/imagens/badges/JavaScript.svg" alt="JavaScript">
+                            <img src="/imagens/badges/Bootstrap.svg" alt="Bootstrap">
+                            <img src="/imagens/badges/Git.svg" alt="Git">
+                        </div>
+
+                        <a href="/paginas-emanuel/projeto/steam-maioridade.html" class="link-ver-mais">
+                            <button class="btn-ver-mais">Ver Mais</button>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="container-projetos-compartilhados">
+            <h2 class="title-projetos-compartilhados">Projetos Compartilhados</h2>
+            <div class="container-card-tela-perfil">
+                <div class="card-tela-perfil">
+                    <figure class="figure-card-tela-perfil">
+                        <img src="/imagens/projetos/pdpet/logo.png" alt="" class="img-card-tela-perfil">
+                        <figcaption>foto de perfil</figcaption>
+                    </figure>
+                    <div class="conteudo-card-tela-perfil">
+                        <div class="titulo-descricao-tela-perfil">
+                            <h2 class="title-card-tela-perfil">PD Pet</h2>
+                            <p class="descricao-card-tela-perfil">A PD PET é sua loja digital de tudo que possa precisar para seu bichinho favorito!</p>
+                        </div>
+                        <div class="badges-card-projeto">
+                            <img src="/imagens/badges/SQLite.svg" alt="SQLite">
+                            <img src="/imagens/badges/Javascript.svg" alt="Javascript">
+                            <img src="/imagens/badges/MySQL.svg" alt="MySQL">
+                            <img src="/imagens/badges/CSS.svg" alt="CSS">
+                            <img src="/imagens/badges/HTML.svg" alt="HTML">
+                            <img src="/imagens/badges/Python.svg" alt="Python">
+                        </div>
+
+                        <a href="/projetos-compartilhados/pdpet.html" class="link-ver-mais">
+                            <button class="btn-ver-mais">Ver Mais</button>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card-tela-perfil">
+                    <figure class="figure-card-tela-perfil">
+                        <img src="/imagens/projetos/imdb-api/imdb-api.png" alt="" class="img-card-tela-perfil">
+                        <figcaption>foto de perfil</figcaption>
+                    </figure>
+                    <div class="conteudo-card-tela-perfil">
+                        <div class="titulo-descricao-tela-perfil">
+                            <h2 class="title-card-tela-perfil">IMDb API</h2>
+                            <p class="descricao-card-tela-perfil">A IMDb API é uma interface que permite acessar dados
+                                relacionados a filmes, séries e atores do banco de dados da IMDb.</p>
+                        </div>
+                        <div class="badges-card-projeto">
+                            <img src="/imagens/badges/SQLite.svg" alt="SQLite">
+                            <img src="/imagens/badges/Javascript.svg" alt="Javascript">
+                            <img src="/imagens/badges/MySQL.svg" alt="MySQL">
+                            <img src="/imagens/badges/CSS.svg" alt="CSS">
+                            <img src="/imagens/badges/HTML.svg" alt="HTML">
+                            <img src="/imagens/badges/Python.svg" alt="Python">
+                        </div>
+
+                         <a href="/projetos-compartilhados/imdb-api.html" class="link-ver-mais">
+                            <button class="btn-ver-mais">Ver Mais</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script src="/js/index.js"></script>
+    <script src="/js/perfil.js"></script>
+</body>
+
+</html>

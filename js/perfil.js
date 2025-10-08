@@ -2,8 +2,8 @@ const botao = document.querySelector('.baixar-curriculo');
 const img = botao.querySelector('img')
 const texto = botao.querySelector('p')
 
-const originalSrc = "imagens/icones/download.svg"
-const hoverSrc = "imagens/icones/downloadhover.svg"
+const originalSrc = "/imagens/icones/download.svg"
+const hoverSrc = "/imagens/icones/downloadhover.svg"
 const originalBg = "#F4BC1D"
 const hoverBg = "#000000"
 

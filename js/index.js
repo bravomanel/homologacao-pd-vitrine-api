@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ícones SVG para uso
     const addIconSVG = '<img src="/imagens/icones/adicionar-icone.svg" alt="Adicionar filtro" class="icon">';
     const removeIconSVG = '<img src="/imagens/icones/remover-icone.svg" alt="Remover filtro" class="icon">';
-    const arrowIconSVG = `<img src="imagens/icones/down.svg" class="dropdown-arrow icon"  alt="seta para abrir">`;
+    const arrowIconSVG = `<img src="/imagens/icones/down.svg" class="dropdown-arrow icon"  alt="seta para abrir">`;
     const starFilledSVG = '<img src="/imagens/icones/estrela-preenchida.svg" class="star" alt="">';
     const starEmptySVG = '<img src="/imagens/icones/estrela-vazia.svg" class="star" alt="">';
 
