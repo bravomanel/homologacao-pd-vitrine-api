@@ -743,6 +743,7 @@ header {
     max-width: 130px;
     height: auto;
     margin-top: 10px;
+    border-radius: 100%;
     margin-bottom: 18px;
     /*24px - 6px = distância da foto pro nome. 6px de margem aproximadamente entre o texto e o fim do bloco do texto*/
 }
@@ -874,6 +875,7 @@ header {
         height: auto;
         margin-top: 35px;
         margin-bottom: 25px;
+        border-radius: 100%;
     }
 
     .nome {
