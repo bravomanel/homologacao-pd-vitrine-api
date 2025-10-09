@@ -20,7 +20,7 @@
     <!-- cabeçalho -->
     <header class="d-flex flex-row align-items-center justify-content-between m-0">
         <!-- logo -->
-        <a href="/index.html">
+        <a href="../../index.html">
             <!-- logo aparece somente no desktop -->
             <img src="/imagens/logo/logo-desktop.png" id="logo-desktop"
                 alt="Logo da PD Vitrine: a letra P com gradiente branco e amarelo, a letra D também em gradiente branco e amarelo, e abaixo a palavra 'Vitrine' em branco."
@@ -60,7 +60,7 @@
                         <h6 class="dropdown-header">Sistemas</h6>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="https://talentos.pdcase.com/ead/">PD EAD</a>
+                        <a class="dropdown-item" href="https://talentos.pdcase.com/">PD Case EAD</a>
                     </li>
                 </ul>
             </div>
@@ -73,6 +73,9 @@
             </button>
         </nav>
 
+
+
+
         <!-- Modal sistemas mobile-->
         <article class="modal fade" id="btn-sistemaModal" tabindex="-1" aria-labelledby="btn-sistemaLabel"
             aria-hidden="true">
@@ -84,7 +87,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body m-0 p-0"><!-- opções de sistemas -->
-                        <a class="dropdown-item" href="https://talentos.pdcase.com/ead/">PD EAD</a>
+                        <a class="dropdown-item " href="https://talentos.pdcase.com/">PD Case EAD</a>
                     </div>
                 </div>
             </div>
@@ -97,7 +100,7 @@
 
                 <button type="button" class="btn-close-modal-mobile d-flex d-md-none" data-bs-dismiss="modal"
                     aria-label="Close">
-                    <img src="/imagens/icones/close.svg" alt="Fechar modal">
+                    <img src="imagens/icones/close.svg" alt="Fechar modal">
                 </button>
                 <div class="modal-content borda-amarelo">
                     <div class="modal-body">
@@ -151,11 +154,30 @@
     </header>
     <!-- fim cabeçalho -->
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <!-- Botão voltar página de Perfil -->
     <div class="pd-projeto-botao-voltar">
-        <a href="/index.html" class="d-flex align-items-center text-decoration-none fw-bold ps-3">
+        <a href="../perfil-caio.html" class="d-flex align-items-center text-decoration-none fw-bold ps-3">
             <img src="/imagens/icones/return.svg" alt="retornar" class="botao-voltar-projeto">
-            <span>IMDb API</span>
+            <span>Apresentação</span>
         </a>
     </div>
     <main class="container-fluid py-3 px-4 main-projeto">
@@ -172,25 +194,38 @@
                 <div class="project-info-sidebar">
                     <section class="project-card">
                         <h3>Descrição</h3>
-                        <p>A IMDb API é uma interface que permite acessar dados relacionados a filmes, séries e atores do banco de dados da IMDb.</p>
-                            
+                        <p>O projeto do Cartão de Apresentação foi desenvolvido com o objetivo de praticar HTML e
+                            CSS, explorando a criação de uma interface pessoal moderna e bem estruturada. A proposta
+                            foi montar um cartão digital que apresentasse informações básicas, como nome, idade,
+                            gostos pessoais e links para redes sociais.
+
+                            Sem o uso de ferramentas externas como Figma ou Bootstrap, todo o design foi
+                            feito manualmente com HTML e CSS puro, aplicando conceitos de alinhamento,
+                            espaçamento, sombras, gradientes e bordas arredondadas para criar um visual
+                            limpo e agradável.
+
+                            O foco principal do projeto foi o estudo de layout e estilização, com atenção
+                            à harmonia entre cores, tipografia e posicionamento dos elementos, resultando
+                            em uma página simples, funcional e esteticamente equilibrada.</p>
                     </section>
 
                     <section class="project-card">
                         <h3>Badges</h3>
                         <div class="badges-container">
-                            <img src="/imagens/badges/Javascript.svg" alt="Badge Javascript" class="badge-item">
                             <img src="/imagens/badges/HTML.svg" alt="Badge HTML" class="badge-item">
                             <img src="/imagens/badges/CSS.svg" alt="Badge CSS" class="badge-item">
-                            <img src="/imagens/badges/Git.svg" alt="Badge Git" class="badge-item">
+
+
+
+
                         </div>
                     </section>
 
                     <section class="project-card">
                         <h3>Links</h3>
                         <div class="projects-links-container">
-                            <a href="https://pd-filmes.vercel.app/" class="btn btn-project">Aplicação</a>
-                            <a href="https://github.com/LeonardoChiariMaciel/pd-filmes"
+                            <a href="#" class="btn btn-project">Aplicação</a>
+                            <a href="https://github.com/caiomartins8/Perfil-com-Cart-o"
                                 class="btn btn-project">Repositório</a>
                         </div>
                     </section>
@@ -198,14 +233,12 @@
                     <section class="project-card">
                         <h3>Colaboradores</h3>
                         <ul class="list-unstyled collaborators-list">
+
                             <li class="collaborator-item">
-                                <img src="/imagens/fotos-de-perfil/leonardomaciel.svg" alt="Ícone de usuário" class="profile-pic">
-                                <span class="collaborator-name">Leonardo Maciel</span>
+                                <img src="/imagens/icones/user.svg" alt="Ícone de usuário" class="profile-pic">
+                                <span class="collaborator-name">Caio Caldeira</span>
                             </li>
-                            <li class="collaborator-item">
-                                <img src="/imagens/fotos-de-perfil/emanuel.jpg" alt="Ícone de usuário" class="profile-pic">
-                                <span class="collaborator-name">Emanuel Bravo</span>
-                            </li>
+
                         </ul>
                     </section>
                 </div>
@@ -231,8 +264,10 @@
 
     <script>
         const projectImages = [
-            '/imagens/projetos/imdb-api/imdb-api/1.png',
-            '/imagens/projetos/imdb-api/imdb-api/2.png',
+            '../../imagens/projetos/projetos-caio/apresentacao-card/image.png',
+
+
+
 
         ];
     </script>
@@ -240,7 +275,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
-
+    <script src="/js/index.js"></script>
     <script src="/js/projeto.js"></script>
 </body>
 
