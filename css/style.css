@@ -1009,33 +1009,7 @@ figcaption {
     }
 }
 
-.container-meus-projetos {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-@media (min-width: 500px) {
-    .container-meus-projetos {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-}
-
-@media (min-width: 720px) {
-    .container-meus-projetos {
-        width: fit-content;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-}
-
+.container-meus-projetos,
 .container-projetos-compartilhados {
     width: 100%;
     display: flex;
@@ -1045,6 +1019,35 @@ figcaption {
 }
 
 @media (min-width: 500px) {
+    .container-meus-projetos,
+    .container-projetos-compartilhados {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media (min-width: 720px) {
+    .container-meus-projetos,
+    .container-projetos-compartilhados {
+        width: fit-content;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* .container-projetos-compartilhados {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (min-width: 500px) {
     .container-projetos-compartilhados {
         width: 100%;
         display: flex;
@@ -1062,7 +1065,7 @@ figcaption {
         justify-content: center;
         align-items: flex-start;
     }
-}
+} */
 
 .title-meus-projetos {
     font-family: var(--font-vollkorn);
@@ -1199,6 +1202,7 @@ figcaption {
     height: 350px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     background-color: #161D26;
     border-radius: 23px 0 20px 0;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
@@ -1220,24 +1224,20 @@ figcaption {
 
 .conteudo-card-tela-perfil {
     flex: 1;
-    margin-top: 0 !important;
     width: 100%;
-    height: 100%;
-    padding: 0 0.5em 0 0.5em;
+    padding: 12px 0.5em;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding-top: 12px;
-    padding-bottom: 12px;
     align-items: center;
-    position: relative;
+    position: static;
 }
 
 
 @media (min-width: 720px) {
     .conteudo-card-tela-perfil {
+    max-height: 267px;
         gap: 5%;
-        padding-bottom: 14px;
     }
 }
 
@@ -1275,14 +1275,7 @@ figcaption {
     width: 100%;
     height: 137px;
     margin: 0 !important;
-}
-
-@media (min-width: 500px) {
-    .figure-card-tela-perfil {
-        width: 100%;
-        height: 137px;
-        margin: 0 !important;
-    }
+    flex-shrink: 0;
 }
 
 @media (min-width: 720px) {
