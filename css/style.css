@@ -2373,13 +2373,19 @@ figure {
 }
 
 .card-index {
-    max-width: 100%;
+    text-align: center;
     width: 64.8dvw;
-    height: 86.933vw;
+    max-width: 100%;
+    aspect-ratio: 3 / 4;
     background-color: var(--cor-bg-card);
     border-radius: 2em 0 2em;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
-    margin: 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
 }
 
 /* card perfil do index: faixa amarela e foto de perfil */
@@ -2391,8 +2397,9 @@ figure {
 }
 
 .card-index__foto {
-    width: 6.87em;
-    height: 6.87em;
+    width: 34.06vw;
+    max-width: 109px;
+    height: auto;
 }
 
 /* card perfil do index: corpo do conteudo*/
@@ -2407,7 +2414,7 @@ figure {
 .card-index__nome {
     font-family: var(--font-vollkorn);
     font-weight: 600;
-    font-size: 1.12em;
+    font-size: clamp(17.92px, 5.6vw, 25px);
     /* font-size: clamp(1.12em, 1rem + 1vw, 1.688em); */
     color: var(--branco-forte);
 }
@@ -2417,7 +2424,12 @@ figure {
     color: var(--branco-forte);
     font-family: var(--font-raleway);
     font-weight: 400;
-    font-size: 0.62em;
+    font-size: clamp(9.9px, 2.5vw, 10.5px);
+    margin: clamp(2px, 0.6vw, 4px);
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    max-height: 45px;
+    overflow: hidden;
     /*  font-size: clamp(0.62em, 2.66vw + 1rem, 0.87em); */
 }
 
@@ -2478,12 +2490,12 @@ figure {
 
     /* card perfil do index: identificação*/
     .card-index__nome {
-        font-size: 1.6875rem;
+        font-size: 25px;
     }
 
     .card-index__descricao {
         width: 100%;
-        font-size: .875rem;
+        font-size: clamp(9.9px, 2.5vw, 12px);
     }
 
     /* card perfil do index: badges */
@@ -2771,3 +2783,59 @@ figure {
         max-height: 24px;
     }
 }
+
+/*feat36 correção (uma parte delas)*/
+.alinhar-inicio {
+    text-align: start;
+    width: fit-content;
+    flex-wrap: nowrap;
+}
+
+.gap-lideres {
+    gap: clamp(2px, 0.62vw, 3px);
+    width: fit-content;
+}
+
+.section-cards-index {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+.div-cards-index {
+    display: inline-grid;
+    gap: 21px;
+    grid-template-columns: repeat(4, 260px);
+}
+
+@media (max-width: 1200px) {
+    .div-cards-index {
+        grid-template-columns: repeat(3, 260px);
+    }
+}
+
+@media (max-width: 900px) {
+    .div-cards-index {
+        grid-template-columns: repeat(2, 260px);
+    }
+}
+
+@media (max-width: 600px) {
+
+    .div-cards-index {
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 100%;
+        max-width: 100%;
+        justify-items: center;
+    }
+}
+
+.card-index {
+    width: 260px;
+    box-sizing: border-box;
+}
+
+/*FIM DA CORREÇÃO DA FEAT36*/
