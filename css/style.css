@@ -1376,6 +1376,7 @@ figcaption {
 .badges-card-projeto img {
     margin: 0 !important;
     padding: 0 !important;
+    height: 15px;
     }
 
 @media (min-width: 500px) {
