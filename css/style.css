@@ -1011,61 +1011,21 @@ figcaption {
 
 .container-meus-projetos,
 .container-projetos-compartilhados {
-    width: 100%;
+    width: 97vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-@media (min-width: 500px) {
-    .container-meus-projetos,
-    .container-projetos-compartilhados {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-}
 
 @media (min-width: 720px) {
     .container-meus-projetos,
     .container-projetos-compartilhados {
-        width: fit-content;
-        display: flex;
-        flex-direction: column;
         align-items: flex-start;
     }
 }
 
-/* .container-projetos-compartilhados {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-@media (min-width: 500px) {
-    .container-projetos-compartilhados {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-}
-
-@media (min-width: 720px) {
-    .container-projetos-compartilhados {
-        width: fit-content;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-    }
-} */
 
 .title-meus-projetos {
     font-family: var(--font-vollkorn);
