@@ -1004,9 +1004,7 @@ figcaption {
         padding-top: clamp(0px, 3.47vw, 50px);
         display: flex;
         flex-direction: column;
-        width: fit-content;
-        align-items: start;
-        margin: auto;
+        align-items: center;
         /*margin-left: 4.65vw;*/
     }
 }
@@ -1167,7 +1165,7 @@ figcaption {
 .container-card-tela-perfil {
     width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-flow: column wrap;
     justify-content: center;
     align-items: center;
     gap: 32px;
@@ -1189,7 +1187,7 @@ figcaption {
         width: 100%;
         height: 100%;
         display: flex;
-        flex-direction: row;
+        flex-flow: row wrap;
         justify-content: flex-start;
         gap: 13px;
     }
@@ -1197,7 +1195,8 @@ figcaption {
 
 .card-tela-perfil {
     width: 243px;
-    height: 326px;
+    /* height: 326px; */
+    height: 350px;
     display: flex;
     flex-direction: column;
     background-color: #161D26;
@@ -1205,23 +1204,12 @@ figcaption {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
 }
 
-@media (min-width: 500px) {
-    .card-tela-perfil {
-        width: 243px;
-        height: 326px;
-        display: flex;
-        flex-direction: column;
-        background-color: #161D26;
-        border-radius: 23px 0 20px 0;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
-    }
-}
-
 @media (min-width: 720px) {
     .card-tela-perfil {
         width: 100%;
         max-width: 313px;
-        height: 421px;
+        /* height: 421px; */
+        height: 445px;
         display: flex;
         flex-direction: column;
         background-color: #161D26;
@@ -1235,35 +1223,21 @@ figcaption {
     margin-top: 0 !important;
     width: 100%;
     height: 100%;
+    padding: 0 0.5em 0 0.5em;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    padding-top: 12px;
+    padding-bottom: 12px;
     align-items: center;
+    position: relative;
 }
 
-@media (min-width: 500px) {
-    .conteudo-card-tela-perfil {
-        flex: 1;
-        margin-top: 0 !important;
-        width: 100%;
-        display: flex;
-        justify-content: space-evenly;
-        flex-direction: column;
-        align-items: center;
-    }
-}
 
 @media (min-width: 720px) {
     .conteudo-card-tela-perfil {
-        flex: 1;
-        margin-top: 0 !important;
-        width: 100%;
-        display: flex;
-        justify-content: flex-end;
-        flex-direction: column;
-        align-items: center;
-        gap: 1vh;
-        padding-bottom: 1.5vh;
+        gap: 5%;
+        padding-bottom: 14px;
     }
 }
 
@@ -1333,105 +1307,94 @@ figcaption {
     color: #FFFFFF;
     text-transform: uppercase;
     text-align: center;
-    margin-bottom: 0 !important;
+    margin-bottom: 0;
+    white-space: nowrap;
+    /* deixar o titulo com 1 linha idenpeden */
+    width: 100%;
+    max-width: 297px;
+    max-height: 28px;
+    overflow: hidden;
 }
 
 @media (min-width: 500px) {
     .title-card-tela-perfil {
-        font-family: var(--font-vollkorn);
-        font-weight: 500;
-        font-size: 1.125rem;
-        color: #FFFFFF;
-        text-transform: uppercase;
-        text-align: center;
         margin-bottom: 0 !important;
     }
 }
 
 @media (min-width: 720px) {
     .title-card-tela-perfil {
-        font-family: var(--font-vollkorn);
-        font-weight: 500;
         font-size: clamp(18px, 1.875vw, 27px);
-        color: #FFFFFF;
         text-transform: none;
-        text-align: center;
-        margin-bottom: 0 !important;
     }
 }
 
 .descricao-card-tela-perfil {
     width: 100%;
+    line-height: normal;
     font-family: var(--font-raleway);
     font-weight: 300;
-    font-size: .625rem;
+    font-size: 10px;
     color: #FFFFFF;
     text-align: center;
     margin-bottom: 0 !important;
+    max-height: 45px;
+    /* margin-top: 6px; */
 }
 
 @media (min-width: 500px) {
     .descricao-card-tela-perfil {
         width: 95%;
-        font-family: var(--font-raleway);
-        font-weight: 300;
-        font-size: .625rem;
-        color: #FFFFFF;
-        text-align: center;
     }
 }
 
 @media (min-width: 720px) {
     .descricao-card-tela-perfil {
         width: 95%;
+        line-height: 1.3;
         font-family: var(--font-raleway);
         font-weight: 300;
-        font-size: clamp(10px, 0.97vw, 14px);
+        font-size: 14px;
         color: #FFFFFF;
         text-align: center;
+        max-height: 55px;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 }
 
 .badges-card-projeto {
-    width: 95%;
-    height: 59px;
+    width: 100%;
+    max-height: 65px;
+    overflow: hidden;
     display: flex;
     flex-flow: row wrap;
-    align-content: center;
+    /*     align-content: flex-start; */
     justify-content: center;
     align-items: center;
-    gap: 7px 10px;
+    gap: 7px;
 }
+
+.badges-card-projeto img {
+    margin: 0 !important;
+    padding: 0 !important;
+    height: 15px;
+    }
 
 @media (min-width: 500px) {
     .badges-card-projeto {
-        width: 95%;
-        height: 37px;
-        display: flex;
-        flex-flow: row wrap;
-        align-content: center;
-        justify-content: center;
-        align-items: center;
         gap: 7px 10px;
     }
 }
 
 @media (min-width: 720px) {
     .badges-card-projeto {
-        width: 19.30vw;
-        max-width: 278px;
-        height: 82px;
-        display: flex;
-        flex-flow: row wrap;
-        align-content: center;
-        justify-content: center;
-        align-items: center;
-        gap: 1.26vh 0.83vw;
+        max-height: 79px;        
+        gap: 12px 13px;
     }
 
     .badges-card-projeto img {
-        height: 1.78vw;
-        max-height: 18.3px;
+        height: 18.3px;
     }
 }
 
