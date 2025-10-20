@@ -22,7 +22,6 @@ async function pegaBio(pessoa) {
     return data.bio;
 }
 
-// resto do seu código igual...
 async function adicionarCard(pessoa) {
     const bio = await pegaBio(pessoa);
     const dados = await pegaUser(pessoa);
