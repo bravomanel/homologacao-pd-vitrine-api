@@ -1,5 +1,5 @@
 const url = '/api' // agora chamamos o server
-const colaboradores = ['emanuel.bravo', 'leonardo.maciel', 'joao.tavares', 'caio.caldeira', 'geovanna.alves', 'matheus.lopes', 'kaue.santos', 'felipe.deoliveira', 'daniel.berberrt', 'lucas.alves', 'leandro.ribeiro', 'matheus.casagrande', 'paulo.martins', 'paulo.martins', 'bruno.luz', 'arthur.othero', 'thalisson.santos', 'marcos.alexandria', 'joao.seixas'];
+const colaboradores = ['emanuel.bravo', 'leonardo.maciel', 'joao.tavares', 'caio.caldeira', 'geovanna.alves', 'matheus.lopes', 'kaue.santos', 'felipe.deoliveira', 'daniel.berberrt', 'lucas.alves', 'leandro.ribeiro', 'matheus.casagrande', 'paulo.martins', 'bruno.luz', 'arthur.othero', 'thalisson.santos', 'marcos.alexandria', 'joao.seixas'];
 
 async function pegaUser(pessoa) {
     try {
@@ -80,13 +80,41 @@ async function adicionarCard(pessoa) {
                     </div>
                 </div>
                 <!-- botão ver mais -->
-                <a href="perfil.html"
+                <button
+                    data-username="${dados[0].username}"
+                    data-id="${dados[0].id}"
                     class="card-index__btn-ver-mais d-flex justify-content-center align-items-center border border-0 text-decoration-none " data-username="${dados[0].username}">
                     Ver Perfil
-                </a>
+                </button>
             </div>
         </article>
     `;
 }
 
 colaboradores.forEach(colaborador => adicionarCard(colaborador));
+
+const botoes = document.querySelectorAll('.card-index__btn-ver-mais');
+document.querySelector('.div-cards-index').addEventListener('click', async (event) => {
+    if (event.target.classList.contains('card-index__btn-ver-mais')) {
+        const username = event.target.dataset.username;
+        const id = event.target.dataset.id;
+
+        localStorage.setItem('perfilUsername', username);
+        localStorage.setItem('perfilId', id);
+
+        window.location.href = 'perfil.html';
+        await iniciarPerfil();
+    }
+});
+
+
+async function iniciarPerfil() {
+    const username = localStorage.getItem('perfilUsername');
+    if (!username) return;
+
+    const bio = await pegaBio(username);
+    const caixaTexto = document.querySelector('.caixa-quem-sou-eu');
+    caixaTexto.innerText = bio;
+}
+
+window.addEventListener('DOMContentLoaded', iniciarPerfil);
