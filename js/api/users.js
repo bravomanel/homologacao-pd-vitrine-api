@@ -1,7 +1,5 @@
-// users.js (Refatorado para Frontend-Only com <img src>)
-
 // const colaboradores = ['emanuel.bravo', 'leonardo.maciel', 'joao.tavares', 'caio.caldeira', 'geovanna.alves', 'matheus.lopes', 'kaue.santos', 'felipe.deoliveira', 'daniel.berberrt', 'lucas.alves', 'leandro.ribeiro', 'matheus.casagrande', 'paulo.martins', 'bruno.luz', 'arthur.othero', 'thalisson.santos', 'marcos.alexandria', 'joao.seixas'];
-const colaboradores = ['emanuel.bravo', 'leonardo.maciel', 'joao.tavares', 'geovanna.alves', 'matheus.lopes',];
+const colaboradores = ['emanuel.bravo', 'leonardo.maciel', 'geovanna.alves', 'matheus.lopes',];
 
 // monta e adiciona o card de um colaborador na página.
 async function adicionarCard(pessoa) {
@@ -15,7 +13,7 @@ async function adicionarCard(pessoa) {
     // Usa a função de utils.js para pegar detalhes (incluindo bio)
     const usuarioDetalhado = await pegaDetalhesDoUsuario(usuarioBasico.id); 
     const bio = usuarioDetalhado ? usuarioDetalhado.bio : '';
-    const avatarUrl = usuarioBasico.avatar_url; // URL direta
+    const avatarUrl = usuarioBasico.avatar_url;
 
     const divMae = document.querySelector('.div-cards-index');
     divMae.innerHTML += `
@@ -83,10 +81,8 @@ document.querySelector('.div-cards-index').addEventListener('click', (event) => 
     
     if (targetButton) {
         const username = targetButton.dataset.username;
-        const id = targetButton.dataset.id;
 
         localStorage.setItem('perfilUsername', username);
-        localStorage.setItem('perfilId', id);
 
         window.location.href = 'perfil.html';
     }

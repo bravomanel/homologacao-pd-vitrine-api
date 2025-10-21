@@ -1,21 +1,29 @@
-// profile.js (Refatorado para Frontend-Only com <img src>)
-
 // renderiza o card HTML de um projeto.
-function renderizarCardProjeto(projeto) {
-    const avatarProjetoUrl = projeto.avatar_url; // URL direta
+async function renderizarCardProjeto(projeto) {
+    // 1. Encontra a URL da imagem 'card.*' usando a nova função de utils.js
+    const cardImageUrlRaw = await encontraUrlImagemCardProjeto(projeto.id, projeto.path_with_namespace);
 
+    // 2. Carrega a imagem 'card.*' (ou um placeholder) como blob URL
+    let imagemCardUrl;
+    if (cardImageUrlRaw) {
+        imagemCardUrl = await carregarImagemPrivada(cardImageUrlRaw); 
+    } else {
+        // Se 'card.*' não for encontrada, usa o avatar do projeto ou um default
+        console.warn(`Imagem 'card.*' não encontrada no projeto ${projeto.name}. Usando avatar ou default.`);
+        imagemCardUrl = await carregarImagemPrivada(projeto.avatar_url || '/imagens/projetos/default-logo.png'); 
+    }
+
+    // Mapeia os "topics" (tags) do projeto para os ícones de badges
     const badgesHtml = (projeto.topics || []).map(topic => 
+        // Capitaliza nome do tópico para nome do arquivo
         `<img src="/imagens/badges/${topic.charAt(0).toUpperCase() + topic.slice(1)}.svg" alt="${topic}" title="${topic}">`
     ).join('');
 
     return `
         <div class="card-tela-perfil">
             <figure class="figure-card-tela-perfil">
-                <img src="${avatarProjetoUrl || '/imagens/projetos/default-logo.png'}" 
-                     alt="Logo do projeto" 
-                     onerror="this.onerror=null; this.src='/imagens/projetos/default-logo.png';" 
-                     class="img-card-tela-perfil">
-                <figcaption>Logo do projeto ${projeto.name}</figcaption>
+                <img src="${imagemCardUrl}" alt="Imagem do projeto ${projeto.name}" class="img-card-tela-perfil"> 
+                <figcaption>Imagem do projeto ${projeto.name}</figcaption> 
             </figure>
             <div class="conteudo-card-tela-perfil">
                 <div class="titulo-descricao-tela-perfil">
@@ -25,51 +33,43 @@ function renderizarCardProjeto(projeto) {
                 <div class="badges-card-projeto">
                     ${badgesHtml || 'Sem badges'}
                 </div>
-                <a href="projeto.html?id=${projeto.id}" class="link-ver-mais">
-                    <button class="btn-ver-mais">Ver Mais</button>
-                </a>
+                <button class="btn-ver-mais" data-project-id="${projeto.id}">Ver Mais</button>
             </div>
         </div>
     `;
 }
 
 // Preenche o card principal do perfil
-function preencherCardPerfil(usuario) {
+async function preencherCardPerfil(usuario) {
     if (!usuario) return;
 
-    const avatarUrl = usuario.avatar_url; // URL direta
+    // Usa a função de utils.js para carregar o avatar principal
+    const avatarUrl = await carregarImagemPrivada(usuario.avatar_url); 
 
     const nomeEl = document.querySelector('.nome');
     const fotoEl = document.querySelector('.foto-usuario');
-    const descricaoEl = document.querySelector('.descricao'); // A bio curta
-    const bioCompletaEl = document.querySelector('.caixa-quem-sou-eu'); // O "Quem sou eu"
-    const linkGitlabEl = document.querySelector('.icons-sociais a[href*="gitlab"]'); // Seletor mais específico
-    const linkLinkedinEl = document.querySelector('.icons-sociais a[href*="linkedin"]'); // Seletor mais específico
+    const descricaoEl = document.querySelector('.descricao'); // Bio curta
+    const bioCompletaEl = document.querySelector('.caixa-quem-sou-eu'); // "Quem sou eu"
+    const linkGitlabEl = document.querySelector('.icons-sociais a[href*="gitlab"]'); 
+    const linkLinkedinEl = document.querySelector('.icons-sociais a[href*="linkedin"]'); 
 
     if (nomeEl) nomeEl.textContent = usuario.name || 'Nome não informado';
-    if (fotoEl) {
-        fotoEl.src = avatarUrl || '/imagens/icones/user.svg';
-        fotoEl.onerror = () => { fotoEl.src = '/imagens/icones/user.svg'; }; // Fallback
-    }
+    if (fotoEl) fotoEl.src = avatarUrl; // Já é uma blob URL
     if (descricaoEl) descricaoEl.textContent = usuario.bio || 'Sem descrição.'; 
     if (bioCompletaEl) bioCompletaEl.textContent = usuario.bio || 'Nenhuma informação adicional fornecida.';
 
     // Atualiza links sociais
-    if (linkGitlabEl) linkGitlabEl.href = usuario.web_url || '#';
+    if (linkGitlabEl) {
+        linkGitlabEl.href = usuario.web_url || '#';
+        linkGitlabEl.target = '_blank';
+    }
     if (linkLinkedinEl) {
-        // Assume que 'linkedin' no perfil GitLab é o username/id do perfil
         linkLinkedinEl.href = usuario.linkedin ? `https://www.linkedin.com/in/${usuario.linkedin}` : '#'; 
-        // Adiciona target="_blank" se não tiver
         linkLinkedinEl.target = '_blank'; 
     }
-    
-    // Adiciona target blank para o gitlab também
-    if (linkGitlabEl) linkGitlabEl.target = '_blank';
 }
 
-/**
- * Função principal que executa quando a página de perfil carrega
- */
+// função principal que executa quando a página de perfil carrega
 document.addEventListener('DOMContentLoaded', async () => {
     const username = localStorage.getItem('perfilUsername');
     if (!username) {
@@ -92,8 +92,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         pegaProjetosDoUsuario(userId) 
     ]);
 
-    // Preenche o card de perfil
-    preencherCardPerfil(usuarioDetalhado);
+    // Preenche o card de perfil (agora é async por causa do avatar)
+    await preencherCardPerfil(usuarioDetalhado); 
 
     // Renderiza os projetos
     const containerMeusProjetos = document.querySelector('.container-meus-projetos .container-card-tela-perfil');
@@ -105,26 +105,42 @@ document.addEventListener('DOMContentLoaded', async () => {
     let meusProjetosCount = 0;
     let projetosCompartilhadosCount = 0;
 
-    for (const projeto of todosOsProjetos) {
-        // renderizarCardProjeto não é mais async
-        const cardHtml = renderizarCardProjeto(projeto); 
-        
-        // separa projetos onde usuário é dono vs. projetos de grupo
-        // Verifica se usuarioDetalhado existe antes de acessar .name
-        if (usuarioDetalhado && projeto.namespace.kind === 'user' && projeto.namespace.name === usuarioDetalhado.name) {
-            containerMeusProjetos.innerHTML += cardHtml;
+    // Usamos Promise.all para renderizar cards em paralelo (mais rápido)
+    const cardsPromises = todosOsProjetos.map(async (projeto) => {
+        const cardHtml = await renderizarCardProjeto(projeto); // renderizar agora é async
+        return { html: cardHtml, isOwner: (usuarioDetalhado && projeto.namespace.kind === 'user' && projeto.namespace.name === usuarioDetalhado.name) };
+    });
+
+    const renderedCards = await Promise.all(cardsPromises);
+
+    renderedCards.forEach(cardData => {
+        if (cardData.isOwner) {
+            containerMeusProjetos.innerHTML += cardData.html;
             meusProjetosCount++;
         } else {
-            containerProjetosCompartilhados.innerHTML += cardHtml;
+            containerProjetosCompartilhados.innerHTML += cardData.html;
             projetosCompartilhadosCount++;
         }
-    }
+    });
 
-    // Adiciona mensagens caso não existam projetos em alguma seção
+    // Adiciona mensagens caso não existam projetos
     if (meusProjetosCount === 0) {
         containerMeusProjetos.innerHTML = '<p class="text-center p-3">Nenhum projeto próprio encontrado.</p>';
     }
     if (projetosCompartilhadosCount === 0) {
         containerProjetosCompartilhados.innerHTML = '<p class="text-center p-3">Nenhum projeto compartilhado encontrado.</p>';
     }
+
+    // listener para salvar o ID do projeto e navegar
+    const containersProjetos = document.querySelectorAll('.container-card-tela-perfil');
+    containersProjetos.forEach(container => {
+        container.addEventListener('click', (event) => {
+            const targetButton = event.target.closest('.btn-ver-mais'); // Procura pelo botão
+            if (targetButton && targetButton.dataset.projectId) {
+                const projectId = targetButton.dataset.projectId;
+                localStorage.setItem('projetoId', projectId); // Salva o ID do projeto clicado
+                window.location.href = 'projeto.html'; // Navega para a página do projeto
+            }
+        });
+    });
 });

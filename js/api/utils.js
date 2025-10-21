@@ -1,7 +1,6 @@
-// js/utils.js
-
 const GITLAB_TOKEN = window.env.GITLAB_TOKEN;
 const gitlabApiUrl = 'https://git.pdcase.com/api/v4';
+const gitlabBaseUrl = 'https://git.pdcase.com';
 
 // Headers de autenticação
 const authHeaders = {
@@ -67,7 +66,8 @@ async function listaImagensDoRepositorio(id) {
             throw new Error(`Erro ${response.status} ao listar arquivos do projeto ${id}`);
         }
         const files = await response.json();
-        return files.filter(file => file.type === 'blob'); // Retorna apenas arquivos
+        // Garante que só retorna arquivos, não subpastas
+        return files.filter(file => file.type === 'blob'); 
     } catch (error) {
         console.error("Erro ao listar imagens do repositório:", error);
         return [];
@@ -84,4 +84,46 @@ async function pegaColaboradoresDoProjeto(id) {
         console.error("Erro ao buscar colaboradores:", error);
         return [];
     }
+}
+
+// função auxiliar para carregar avatares e imagens privadas como Blob URLs.
+async function carregarImagemPrivada(url) {
+    // Retorna um placeholder se a URL for nula ou vazia
+    if (!url) {
+        // Decide qual placeholder usar baseado no contexto (melhoria futura)
+        return '/imagens/icones/user.svg'; // Ou um placeholder genérico de imagem
+    }
+
+    try {
+        const response = await fetch(url, { headers: authHeaders });
+        if (!response.ok) throw new Error(`Falha ao carregar imagem: ${response.status}`);
+        
+        const blob = await response.blob();
+        return URL.createObjectURL(blob);
+    } catch (error) {
+        console.error(`Erro ao carregar imagem privada (${url}): `, error);
+        return '/imagens/icones/user.svg'; // Ou um placeholder genérico de imagem
+    }
+}
+
+// encontra a URL da imagem 'card' (com qualquer extensão comum) na pasta /screenshots de um projeto
+async function encontraUrlImagemCardProjeto(projetoId, projetoPathComNamespace) {
+    // Usa a função existente para listar arquivos na pasta screenshots
+    const imageFiles = await listaImagensDoRepositorio(projetoId); 
+
+    if (!imageFiles || imageFiles.length === 0) {
+        return null; // Nenhuma imagem encontrada na pasta
+    }
+
+    // Procura por um arquivo chamado 'card' com extensões comuns
+    const cardImageFile = imageFiles.find(file => 
+        file.name.match(/^card\.(png|jpg|jpeg|gif|svg|webp)$/i) // Regex para 'card.' + extensão
+    );
+
+    if (cardImageFile) {
+        const filePathEncoded = cardImageFile.path.split('/').map(encodeURIComponent).join('/');
+        return `${gitlabBaseUrl}/${projetoPathComNamespace}/-/raw/main/${filePathEncoded}`;
+    }
+
+    return null; // Imagem 'card.*' não encontrada
 }
