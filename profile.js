@@ -34,7 +34,7 @@ async function carregarPerfil() {
 
         const nome = document.querySelector('.nome');
         const foto = document.querySelector('.foto-usuario');
-        const caixa = document.querySelector('.caixa-quem-sou-eu');
+        const caixa = document.querySelector('.descricao');
 
         if (nome) nome.textContent = dados[0].name || '';
         if (caixa) caixa.textContent = bio || '';
