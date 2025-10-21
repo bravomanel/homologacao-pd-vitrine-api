@@ -38,7 +38,7 @@ async function carregarPerfil() {
 
         if (nome) nome.textContent = dados[0].name || '';
         if (caixa) caixa.textContent = bio || '';
-        if (foto) foto.src = dados[0].avatar_url || fotoEl.src;
+        if (foto) foto.src = dados[0].avatar_url || foto.src;
     } catch (err) {
         console.error('Erro ao carregar perfil:', err);
     }
