@@ -1,51 +1,39 @@
-const url = '/api'
-const colaboradores = ['emanuel.bravo', 'leonardo.maciel', 'joao.tavares', 'caio.caldeira', 'geovanna.alves', 'matheus.lopes', 'kaue.santos', 'felipe.deoliveira', 'daniel.berberrt', 'lucas.alves', 'leandro.ribeiro', 'matheus.casagrande', 'paulo.martins', 'bruno.luz', 'arthur.othero', 'thalisson.santos', 'marcos.alexandria', 'joao.seixas'];
+// users.js (Refatorado para Frontend-Only com <img src>)
 
-async function pegaUser(pessoa) {
-    try {
-        const response = await fetch(`${url}/users?username=${pessoa}`);
-        if (!response.ok) throw new Error(`Erro ${response.status}`);
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error("Problema: ", error);
-        return null;
-    }
-}
+// const colaboradores = ['emanuel.bravo', 'leonardo.maciel', 'joao.tavares', 'caio.caldeira', 'geovanna.alves', 'matheus.lopes', 'kaue.santos', 'felipe.deoliveira', 'daniel.berberrt', 'lucas.alves', 'leandro.ribeiro', 'matheus.casagrande', 'paulo.martins', 'bruno.luz', 'arthur.othero', 'thalisson.santos', 'marcos.alexandria', 'joao.seixas'];
+const colaboradores = ['emanuel.bravo', 'leonardo.maciel', 'joao.tavares', 'geovanna.alves', 'matheus.lopes',];
 
-async function pegaBio(pessoa) {
-    const dados = await pegaUser(pessoa);
-    const id = dados[0].id;
-    const response = await fetch(`${url}/users/${id}`);
-    if (!response.ok) throw new Error(`Erro ${response.status}`);
-    const data = await response.json();
-    return data.bio;
-}
-
+// monta e adiciona o card de um colaborador na página.
 async function adicionarCard(pessoa) {
-    const bio = await pegaBio(pessoa);
-    const dados = await pegaUser(pessoa);
+    // Usa a função de utils.js
+    const usuarioBasico = await pegaUsuarioPeloUsername(pessoa); 
+    if (!usuarioBasico) {
+        console.warn(`Usuário ${pessoa} não encontrado ou API falhou.`);
+        return; 
+    }
+
+    // Usa a função de utils.js para pegar detalhes (incluindo bio)
+    const usuarioDetalhado = await pegaDetalhesDoUsuario(usuarioBasico.id); 
+    const bio = usuarioDetalhado ? usuarioDetalhado.bio : '';
+    const avatarUrl = usuarioBasico.avatar_url; // URL direta
+
     const divMae = document.querySelector('.div-cards-index');
     divMae.innerHTML += `
         <article
             class="col card-index d-flex flex-column justify-content-center align-items-center m-0 p-0 position-relative">
-            <!-- retangulo amarelo e img perfil -->
             <div class="card-index__retangulo-amarelo position-absolute top-0 start-0 position-relative">
-                <!-- foto perfil -->
                 <figure class="m-0">
-                    <img src="${dados[0].avatar_url}" alt="foto padrão"
+                    <img src="${avatarUrl || '/imagens/icones/user.svg'}" alt="foto padrão" 
+                        onerror="this.onerror=null; this.src='/imagens/icones/user.svg';" 
                         class="card-index__foto rounded-circle position-absolute top-100 start-50 translate-middle">
                     <figcaption>Foto padrão</figcaption>
                 </figure>
             </div>
-            <!-- seção conteudo -->
             <div class="card-index__conteudo d-flex flex-column justify-content-evenly align-items-center ">
-                <!-- identificação -->
                 <div class=" d-flex flex-column justify-content-evenly align-items-center">
-                    <h2 class="card-index__nome text-capitalize m-0 p-0">${dados[0].name}</h2>
-                    <p class="card-index__descricao text-center lh-sm m-0 p-0">${bio}</p>
+                    <h2 class="card-index__nome text-capitalize m-0 p-0">${usuarioBasico.name}</h2>
+                    <p class="card-index__descricao text-center lh-sm m-0 p-0">${bio || ''}</p>
                 </div>
-                <!-- badges -->
                 <div class="w-100 d-flex justify-content-center align-items-center flex-wrap gap-1 gap-md-2">
                     <img src="./../imagens/badges/HTML.svg" alt="HTML" class="card-index__badges">
                     <img src="./../imagens/badges/CSS.svg" alt="CSS" class="card-index__badges">
@@ -57,11 +45,8 @@ async function adicionarCard(pessoa) {
                     <img src="./../imagens/badges/Figma.svg" alt="Figma" class="card-index__badges">
                     <img src="./../imagens/badges/Github.svg" alt="Github" class="card-index__badges">
                     <img src="./../imagens/badges/Gitlab.svg" alt="Gitlab" class="card-index__badges">
-                    
                 </div>
-                <!-- seção responsaveis tec. e supervisor -->
                 <div class="w-100 d-flex justify-content-evenly align-items-center m-0 p-0">
-                    <!-- responsavel -->
                     <div class="card-index__coordenadores d-flex justify-content-center align-items-center gap-1">
                         <img src="./../imagens/icones/Responsável Tecnico.svg" alt="responsável técnico"
                             class="card-index__icones">
@@ -70,7 +55,6 @@ async function adicionarCard(pessoa) {
                             <p>Matheus Lopes</p>
                         </div>
                     </div>
-                    <!-- supervisor -->
                     <div class="card-index__coordenadores d-flex justify-content-center align-items-center gap-1">
                         <img src="/../imagens/icones/Supervisor.svg" alt="icone supervisor" class="card-index__icones">
                         <div>
@@ -79,11 +63,10 @@ async function adicionarCard(pessoa) {
                         </div>
                     </div>
                 </div>
-                <!-- botão ver mais -->
                 <button
-                    data-username="${dados[0].username}"
-                    data-id="${dados[0].id}"
-                    class="card-index__btn-ver-mais d-flex justify-content-center align-items-center border border-0 text-decoration-none " data-username="${dados[0].username}">
+                    data-username="${usuarioBasico.username}"
+                    data-id="${usuarioBasico.id}"
+                    class="card-index__btn-ver-mais d-flex justify-content-center align-items-center border border-0 text-decoration-none ">
                     Ver Perfil
                 </button>
             </div>
@@ -91,30 +74,20 @@ async function adicionarCard(pessoa) {
     `;
 }
 
+// Inicia a criação dos cards
 colaboradores.forEach(colaborador => adicionarCard(colaborador));
 
-const botoes = document.querySelectorAll('.card-index__btn-ver-mais');
-document.querySelector('.div-cards-index').addEventListener('click', async (event) => {
-    if (event.target.classList.contains('card-index__btn-ver-mais')) {
-        const username = event.target.dataset.username;
-        const id = event.target.dataset.id;
+// Adiciona o listener para os botões "Ver Perfil"
+document.querySelector('.div-cards-index').addEventListener('click', (event) => {
+    const targetButton = event.target.closest('.card-index__btn-ver-mais');
+    
+    if (targetButton) {
+        const username = targetButton.dataset.username;
+        const id = targetButton.dataset.id;
 
         localStorage.setItem('perfilUsername', username);
         localStorage.setItem('perfilId', id);
 
         window.location.href = 'perfil.html';
-        await iniciarPerfil();
     }
 });
-
-
-async function iniciarPerfil() {
-    const username = localStorage.getItem('perfilUsername');
-    if (!username) return;
-
-    const bio = await pegaBio(username);
-    const caixaTexto = document.querySelector('.caixa-quem-sou-eu');
-    caixaTexto.innerText = bio;
-}
-
-window.addEventListener('DOMContentLoaded', iniciarPerfil);
