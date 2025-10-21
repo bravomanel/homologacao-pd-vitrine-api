@@ -128,8 +128,7 @@ function renderizarCardProjeto(projeto) {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-    const params = new URLSearchParams(window.location.search); // pega o username da URL
-    const username = params.get('username');
+    const username = localStorage.getItem('perfilUsername');
 
     if (!username) {
         document.body.innerHTML = '<h1>Usuário não especificado.</h1>';
