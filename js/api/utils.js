@@ -127,3 +127,30 @@ async function encontraUrlImagemCardProjeto(projetoId, projetoPathComNamespace) 
 
     return null; // Imagem 'card.*' não encontrada
 }
+
+
+// busca o texto RAW do README.md de um projeto.
+async function pegaConteudoRawReadme(projeto) {
+    if (!projeto.readme_url) {
+        console.warn(`Projeto ${projeto.name} não possui readme_url.`);
+        return null;
+    }
+    
+    // constroi a URL RAW a partir da URL normal do README
+    // Ex: https://.../blob/main/README.md -> https://.../raw/main/README.md
+    const rawReadmeUrl = projeto.readme_url.replace('/-/blob/', '/-/raw/');
+
+    try {
+        const response = await fetch(rawReadmeUrl, { headers: authHeaders });
+        if (!response.ok) {
+            // README pode não existir ou ser privado, mesmo que a URL exista
+            if (response.status === 404) return null; 
+            throw new Error(`Erro ${response.status} ao buscar README raw`);
+        }
+        // Retorna o conteúdo como texto
+        return await response.text(); 
+    } catch (error) {
+        console.error(`Erro ao buscar conteúdo do README (${rawReadmeUrl}):`, error);
+        return null; // Retorna null em caso de erro de fetch ou outro problema
+    }
+}

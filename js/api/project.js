@@ -16,14 +16,22 @@ async function carregarImagemDoRepositorio(projeto, filePath) {
 }
 
 // preenche as informações principais do projeto na página
-function preencherInfosDoProjeto(projeto) {
-    document.title = projeto.name || 'Projeto'; // Título da página
+function preencherInfosDoProjeto(projeto, readmeContent) { 
+    document.title = projeto.name || 'Projeto'; 
 
     const titleElement = document.querySelector('.project-info-sidebar section:nth-of-type(1) h3'); 
     const descriptionElement = document.querySelector('.project-info-sidebar section:nth-of-type(1) p'); 
     
     if (titleElement) titleElement.textContent = projeto.name || 'Nome do Projeto';
-    if (descriptionElement) descriptionElement.textContent = projeto.description || 'Sem descrição.';
+    
+    if (descriptionElement) {
+        if (readmeContent) {
+            descriptionElement.textContent = readmeContent; 
+        } else {
+            // Fallback
+            descriptionElement.textContent = projeto.description || 'Sem descrição ou README disponível.';
+        }
+    }
 
     // Badges 
     const badgesContainer = document.querySelector('.badges-container');
@@ -80,22 +88,25 @@ document.addEventListener('DOMContentLoaded', async () => {
         return;
     }
 
-    // Busca detalhes do projeto e colaboradores em paralelo usando utils.js
-    const [projeto, colaboradores] = await Promise.all([
-        pegaDetalhesDoProjeto(projectId),
-        pegaColaboradoresDoProjeto(projectId) 
-    ]);
+    // Busca detalhes do projeto
+    const projeto = await pegaDetalhesDoProjeto(projectId);
 
     if (!projeto) {
         document.body.innerHTML = '<h1>Projeto não encontrado ou falha ao carregar.</h1>';
         return;
     }
-    
-    // Preenche as informações de texto
-    preencherInfosDoProjeto(projeto);
 
-    // Preenche a lista de colaboradores (agora é async)
-    await preencherColaboradores(colaboradores); 
+    // busca o README e os colaboradores
+    const [colaboradores, readmeContent] = await Promise.all([
+        pegaColaboradoresDoProjeto(projectId),
+        pegaConteudoRawReadme(projeto)
+    ]);
+    
+    // Preenche as informações de texto, passando o conteúdo do README
+    preencherInfosDoProjeto(projeto, readmeContent); 
+
+    // Preenche a lista de colaboradores
+    preencherColaboradores(colaboradores);
 
     // Busca a lista de arquivos de imagem na pasta 'screenshots' usando utils.js
     const imageFiles = await listaImagensDoRepositorio(projectId);
