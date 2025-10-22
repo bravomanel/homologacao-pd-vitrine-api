@@ -153,7 +153,7 @@ async function pegaConteudoRawReadme(projeto) {
         console.warn(`Projeto ${projeto.name} não possui readme_url.`);
         return null;
     }
-    
+
     // constroi a URL RAW a partir da URL normal do README
     // Ex: https://.../blob/main/README.md -> https://.../raw/main/README.md
     const rawReadmeUrl = projeto.readme_url.replace('/-/blob/', '/-/raw/');
@@ -162,13 +162,32 @@ async function pegaConteudoRawReadme(projeto) {
         const response = await fetch(rawReadmeUrl, { headers: authHeaders });
         if (!response.ok) {
             // README pode não existir ou ser privado, mesmo que a URL exista
-            if (response.status === 404) return null; 
+            if (response.status === 404) return null;
             throw new Error(`Erro ${response.status} ao buscar README raw`);
         }
         // Retorna o conteúdo como texto
-        return await response.text(); 
+        return await response.text();
     } catch (error) {
         console.error(`Erro ao buscar conteúdo do README (${rawReadmeUrl}):`, error);
         return null; // Retorna null em caso de erro de fetch ou outro problema
     }
 }
+
+async function pegaLinguagens(idProjeto) {
+    const response = await fetch(`${gitlabApiUrl}/projects/${idProjeto}/languages`, { headers: authHeaders });
+    return await response.json()
+}
+
+async function criarVetorBadges(idProjeto) {
+    const response = await pegaLinguagens(idProjeto);
+    const nomesLinguagens = Object.keys(response);
+    const imgsBadges = [];
+    nomesLinguagens.map((linguagem) => {
+        imgsBadges.push(`imagens/badges/${linguagem}.svg`)
+    })
+    return imgsBadges;
+}
+
+
+//const srcs = criarVetorBadges(1245);
+//console.log(srcs)

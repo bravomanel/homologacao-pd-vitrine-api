@@ -14,10 +14,13 @@ async function renderizarCardProjeto(projeto) {
     }
 
     // Mapeia os "topics" (tags) do projeto para os ícones de badges
-    const badgesHtml = (projeto.topics || []).map(topic =>
-        // Capitaliza nome do tópico para nome do arquivo
-        `<img src="/imagens/badges/${topic.charAt(0).toUpperCase() + topic.slice(1)}.svg" alt="${topic}" title="${topic}">`
-    ).join('');
+    // const badgesHtml = (projeto.topics || []).map(topic =>
+    //     // Capitaliza nome do tópico para nome do arquivo
+    //     `<img src="/imagens/badges/${topic.charAt(0).toUpperCase() + topic.slice(1)}.svg" alt="${topic}" title="${topic}">`
+    // ).join('');
+
+    const badgesHtml = await criarVetorBadges(projeto.id);
+    //console.log(badgesHtml)
 
     return `
         <div class="card-tela-perfil">
@@ -31,7 +34,10 @@ async function renderizarCardProjeto(projeto) {
                     <p class="descricao-card-tela-perfil">${projeto.description || 'Sem descrição.'}</p>
                 </div>
                 <div class="badges-card-projeto">
-                    ${badgesHtml || 'Sem badges'}
+                    ${badgesHtml.map(badge => `
+                            <img src="${badge}" alt="${badge}">
+                            `)
+        }
                 </div>
                 <button class="btn-ver-mais" data-project-id="${projeto.id}">Ver Mais</button>
             </div>
