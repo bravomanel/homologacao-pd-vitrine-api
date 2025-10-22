@@ -6,15 +6,15 @@ async function renderizarCardProjeto(projeto) {
     // 2. Carrega a imagem 'card.*' (ou um placeholder) como blob URL
     let imagemCardUrl;
     if (cardImageUrlRaw) {
-        imagemCardUrl = await carregarImagemPrivada(cardImageUrlRaw); 
+        imagemCardUrl = await carregarImagemPrivada(cardImageUrlRaw);
     } else {
         // Se 'card.*' não for encontrada, usa o avatar do projeto ou um default
         console.warn(`Imagem 'card.*' não encontrada no projeto ${projeto.name}. Usando avatar ou default.`);
-        imagemCardUrl = await carregarImagemPrivada(projeto.avatar_url || '/imagens/projetos/default-logo.png'); 
+        imagemCardUrl = await carregarImagemPrivada(projeto.avatar_url || '/imagens/projetos/default-logo.png');
     }
 
     // Mapeia os "topics" (tags) do projeto para os ícones de badges
-    const badgesHtml = (projeto.topics || []).map(topic => 
+    const badgesHtml = (projeto.topics || []).map(topic =>
         // Capitaliza nome do tópico para nome do arquivo
         `<img src="/imagens/badges/${topic.charAt(0).toUpperCase() + topic.slice(1)}.svg" alt="${topic}" title="${topic}">`
     ).join('');
@@ -44,28 +44,26 @@ async function preencherCardPerfil(usuario) {
     if (!usuario) return;
 
     // Usa a função de utils.js para carregar o avatar principal
-    const avatarUrl = await carregarImagemPrivada(usuario.avatar_url); 
-
     const nomeEl = document.querySelector('.nome');
     const fotoEl = document.querySelector('.foto-usuario');
     const descricaoEl = document.querySelector('.descricao'); // Bio curta
     const bioCompletaEl = document.querySelector('.caixa-quem-sou-eu'); // "Quem sou eu"
-    const linkGitlabEl = document.querySelector('.icons-sociais a[href*="gitlab"]'); 
-    const linkLinkedinEl = document.querySelector('.icons-sociais a[href*="linkedin"]'); 
+    const linkGitlabEl = document.querySelector('.link-gitlab');
+    const linkLinkedinEl = document.querySelector('.link-linkedin');
 
     if (nomeEl) nomeEl.textContent = usuario.name || 'Nome não informado';
-    if (fotoEl) fotoEl.src = avatarUrl; // Já é uma blob URL
-    if (descricaoEl) descricaoEl.textContent = usuario.bio || 'Sem descrição.'; 
+    if (fotoEl) fotoEl.src = usuario.avatar_url;
+    if (descricaoEl) descricaoEl.textContent = usuario.bio || 'Sem descrição.';
     if (bioCompletaEl) bioCompletaEl.textContent = usuario.bio || 'Nenhuma informação adicional fornecida.';
 
     // Atualiza links sociais
     if (linkGitlabEl) {
-        linkGitlabEl.href = usuario.web_url || '#';
+        linkGitlabEl.href = usuario.web_url;
         linkGitlabEl.target = '_blank';
     }
     if (linkLinkedinEl) {
-        linkLinkedinEl.href = usuario.linkedin ? `https://www.linkedin.com/in/${usuario.linkedin}` : '#'; 
-        linkLinkedinEl.target = '_blank'; 
+        linkLinkedinEl.href = `https://${usuario.linkedin}`;
+        linkLinkedinEl.target = '_blank';
     }
 }
 
@@ -78,7 +76,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // Usa a função de utils.js
-    const usuarioBasico = await pegaUsuarioPeloUsername(username); 
+    const usuarioBasico = await pegaUsuarioPeloUsername(username);
     if (!usuarioBasico) {
         document.body.innerHTML = '<h1>Usuário não encontrado.</h1>';
         return;
@@ -88,12 +86,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Busca detalhes e projetos em paralelo, usando utils.js
     const [usuarioDetalhado, todosOsProjetos] = await Promise.all([
-        pegaDetalhesDoUsuario(userId), 
-        pegaProjetosDoUsuario(userId) 
+        pegaDetalhesDoUsuario(userId),
+        pegaProjetosDoUsuario(userId)
     ]);
 
     // Preenche o card de perfil (agora é async por causa do avatar)
-    await preencherCardPerfil(usuarioDetalhado); 
+    await preencherCardPerfil(usuarioDetalhado);
 
     // Renderiza os projetos
     const containerMeusProjetos = document.querySelector('.container-meus-projetos .container-card-tela-perfil');

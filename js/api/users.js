@@ -4,14 +4,14 @@ const colaboradores = ['emanuel.bravo', 'leonardo.maciel', 'geovanna.alves', 'ma
 // monta e adiciona o card de um colaborador na página.
 async function adicionarCard(pessoa) {
     // Usa a função de utils.js
-    const usuarioBasico = await pegaUsuarioPeloUsername(pessoa); 
+    const usuarioBasico = await pegaUsuarioPeloUsername(pessoa);
     if (!usuarioBasico) {
         console.warn(`Usuário ${pessoa} não encontrado ou API falhou.`);
-        return; 
+        return;
     }
 
     // Usa a função de utils.js para pegar detalhes (incluindo bio)
-    const usuarioDetalhado = await pegaDetalhesDoUsuario(usuarioBasico.id); 
+    const usuarioDetalhado = await pegaDetalhesDoUsuario(usuarioBasico.id);
     const bio = usuarioDetalhado ? usuarioDetalhado.bio : '';
     const avatarUrl = usuarioBasico.avatar_url;
 
@@ -78,7 +78,7 @@ colaboradores.forEach(colaborador => adicionarCard(colaborador));
 // Adiciona o listener para os botões "Ver Perfil"
 document.querySelector('.div-cards-index').addEventListener('click', (event) => {
     const targetButton = event.target.closest('.card-index__btn-ver-mais');
-    
+
     if (targetButton) {
         const username = targetButton.dataset.username;
 
