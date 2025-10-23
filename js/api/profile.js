@@ -21,7 +21,7 @@ async function renderizarCardProjeto(projeto) {
 
     const badgesHtml = await criarVetorBadges(projeto.id);
     //console.log(badgesHtml)
-    const vetorLinks = await pegaImagens(projeto.id);
+    const vetorLinks = await pegaImagensProjeto(projeto.id);
     if (vetorLinks && vetorLinks.length > 0) {
         return `
             <div class="card-tela-perfil">

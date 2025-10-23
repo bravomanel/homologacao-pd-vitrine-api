@@ -59,39 +59,19 @@ async function pegaDetalhesDoProjeto(id) {
 // função auxiliar para carregar avatares e imagens privadas como Blob URLs.
 
 async function carregarImagemPrivada(url) {
-
-    // Retorna um placeholder se a URL for nula ou vazia
-
     if (!url) {
-
-        // Decide qual placeholder usar baseado no contexto (melhoria futura)
-
-        return '/imagens/icones/user.svg'; // Ou um placeholder genérico de imagem
-
+        return '/imagens/icones/user.svg'; // imagem genérica
     }
-
-
-
+    
     try {
-
         const response = await fetch(url, { headers: authHeaders });
-
         if (!response.ok) throw new Error(`Falha ao carregar imagem: ${response.status}`);
-
-
-
         const blob = await response.blob();
-
         return URL.createObjectURL(blob);
-
     } catch (error) {
-
         console.error(`Erro ao carregar imagem privada (${url}): `, error);
-
-        return '/imagens/icones/user.svg'; // Ou um placeholder genérico de imagem
-
+        return '/imagens/icones/user.svg'; // imagem genérica
     }
-
 }
 
 // lista os arquivos da pasta 'screenshots' de um projeto.
@@ -155,21 +135,19 @@ async function pegaConteudoRawReadme(projeto) {
     }
 
     // constroi a URL RAW a partir da URL normal do README
-    // Ex: https://.../blob/main/README.md -> https://.../raw/main/README.md
     const rawReadmeUrl = projeto.readme_url.replace('/-/blob/', '/-/raw/');
 
     try {
-        const response = await fetch(rawReadmeUrl, { headers: authHeaders });
+        const response = await fetch(rawReadmeUrl, { headers: authHeaders, mode: "no-cors" });
+        // const response = await fetch(rawReadmeUrl, { headers: authHeaders });
         if (!response.ok) {
-            // README pode não existir ou ser privado, mesmo que a URL exista
             if (response.status === 404) return null;
             throw new Error(`Erro ${response.status} ao buscar README raw`);
         }
-        // Retorna o conteúdo como texto
         return await response.text();
     } catch (error) {
         console.error(`Erro ao buscar conteúdo do README (${rawReadmeUrl}):`, error);
-        return null; // Retorna null em caso de erro de fetch ou outro problema
+        return null;
     }
 }
 
@@ -188,7 +166,7 @@ async function criarVetorBadges(idProjeto) {
     return imgsBadges;
 }
 
-async function pegaImagens(idProjeto) {
+async function pegaImagensProjeto(idProjeto) {
     const paths = ['screenshots', 'imgs', 'imagens', 'images']
     const response = await fetch(`${gitlabApiUrl}/projects/${idProjeto}/repository/tree?path=screenshots`, { headers: authHeaders });
     const data = await response.json();
@@ -203,15 +181,5 @@ async function pegaImagens(idProjeto) {
         `${gitlabApiUrl}/projects/${idProjeto}/repository/files/${encodeURIComponent(img.path)}/raw?ref=main`
     );
 
-    console.log("Links das imagens:", linkImg);
     return linkImg;
 }
-
-
-const vari = pegaImagens(1245);
-console.log(vari)
-
-
-
-//const srcs = criarVetorBadges(1245);
-//console.log(srcs)
