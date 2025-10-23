@@ -127,24 +127,32 @@ async function encontraUrlImagemCardProjeto(projetoId, projetoPathComNamespace) 
 }
 
 
-// busca o texto RAW do README.md de um projeto.
+// busca o texto RAW do README.md de um projeto
 async function pegaConteudoRawReadme(projeto) {
-    if (!projeto.readme_url) {
-        console.warn(`Projeto ${projeto.name} não possui readme_url.`);
+    if (!projeto || !projeto.id) {
+        console.warn("Objeto 'projeto' inválido ou sem ID.");
         return null;
     }
 
-    // constroi a URL RAW a partir da URL normal do README
-    const rawReadmeUrl = projeto.readme_url.replace('/-/blob/', '/-/raw/');
+    const filePath = encodeURIComponent('README.md');
+    const ref = projeto.default_branch || 'main'; // usa o branch padrão do projeto
+    
+    const rawReadmeUrl = `${gitlabApiUrl}/projects/${projeto.id}/repository/files/${filePath}/raw?ref=${ref}`;
 
     try {
-        const response = await fetch(rawReadmeUrl, { headers: authHeaders, mode: "no-cors" });
-        // const response = await fetch(rawReadmeUrl, { headers: authHeaders });
+        const response = await fetch(rawReadmeUrl, { headers: authHeaders });
+
         if (!response.ok) {
-            if (response.status === 404) return null;
-            throw new Error(`Erro ${response.status} ao buscar README raw`);
+            if (response.status === 404) {
+                // pode tentar outros nomes como 'readme.md' ou 'Readme.md'
+                console.warn(`README.md não encontrado no projeto ${projeto.name} (branch: ${ref}).`);
+                return null;
+            }
+            throw new Error(`Erro ${response.status} ao buscar README raw pela API`);
         }
+        
         return await response.text();
+
     } catch (error) {
         console.error(`Erro ao buscar conteúdo do README (${rawReadmeUrl}):`, error);
         return null;
