@@ -21,28 +21,35 @@ async function renderizarCardProjeto(projeto) {
 
     const badgesHtml = await criarVetorBadges(projeto.id);
     //console.log(badgesHtml)
-
-    return `
-        <div class="card-tela-perfil">
-            <figure class="figure-card-tela-perfil">
-                <img src="${imagemCardUrl}" alt="Imagem do projeto ${projeto.name}" class="img-card-tela-perfil"> 
-                <figcaption>Imagem do projeto ${projeto.name}</figcaption> 
-            </figure>
-            <div class="conteudo-card-tela-perfil">
-                <div class="titulo-descricao-tela-perfil">
-                    <h2 class="title-card-tela-perfil">${projeto.name}</h2>
-                    <p class="descricao-card-tela-perfil">${projeto.description || 'Sem descrição.'}</p>
+    const vetorLinks = await pegaImagens(projeto.id);
+    if (vetorLinks && vetorLinks.length > 0) {
+        return `
+            <div class="card-tela-perfil">
+                <figure class="figure-card-tela-perfil">
+                <img 
+                    src="${vetorLinks[0]}" 
+                    alt="Imagem do projeto ${projeto.name}" 
+                    class="img-card-tela-perfil"
+                > 
+                    <figcaption>Imagem do projeto ${projeto.name}</figcaption> 
+                </figure>
+                <div class="conteudo-card-tela-perfil">
+                    <div class="titulo-descricao-tela-perfil">
+                        <h2 class="title-card-tela-perfil">${projeto.name}</h2>
+                        <p class="descricao-card-tela-perfil">${projeto.description || 'Sem descrição.'}</p>
+                    </div>
+                    <div class="badges-card-projeto">
+                        ${badgesHtml.map(badge => `
+                                <img src="${badge}" alt="${badge}">
+                                `)
+            }
+                    </div>
+                    <button class="btn-ver-mais" data-project-id="${projeto.id}">Ver Mais</button>
                 </div>
-                <div class="badges-card-projeto">
-                    ${badgesHtml.map(badge => `
-                            <img src="${badge}" alt="${badge}">
-                            `)
-        }
-                </div>
-                <button class="btn-ver-mais" data-project-id="${projeto.id}">Ver Mais</button>
             </div>
-        </div>
-    `;
+        `;
+    }
+
 }
 
 // Preenche o card principal do perfil

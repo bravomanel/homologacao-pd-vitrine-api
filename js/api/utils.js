@@ -188,6 +188,30 @@ async function criarVetorBadges(idProjeto) {
     return imgsBadges;
 }
 
+async function pegaImagens(idProjeto) {
+    const paths = ['screenshots', 'imgs', 'imagens', 'images']
+    const response = await fetch(`${gitlabApiUrl}/projects/${idProjeto}/repository/tree?path=screenshots`, { headers: authHeaders });
+    const data = await response.json();
+
+    const imagens = data.filter(arquivo =>
+        arquivo.type === "blob" &&
+        /\.(png|jpg|jpeg|svg|gif)$/i.test(arquivo.name)
+    );
+
+    // Gera links diretos para cada imagem
+    const linkImg = imagens.map(img =>
+        `${gitlabApiUrl}/projects/${idProjeto}/repository/files/${encodeURIComponent(img.path)}/raw?ref=main`
+    );
+
+    console.log("Links das imagens:", linkImg);
+    return linkImg;
+}
+
+
+const vari = pegaImagens(1245);
+console.log(vari)
+
+
 
 //const srcs = criarVetorBadges(1245);
 //console.log(srcs)

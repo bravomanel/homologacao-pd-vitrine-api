@@ -7,7 +7,7 @@ async function carregarImagemDoRepositorio(projeto, filePath) {
         // Assume branch 'main', ajuste se necessário (pegar do projeto.default_branch?)
         const rawImageUrl = `${gitlabBaseUrl}/${projeto.path_with_namespace}/-/raw/main/${filePathEncoded}`;
 
-        // Usa a função de utils.js para buscar como blob
+        //Usa a função de utils.js para buscar como blob
         return await carregarImagemPrivada(rawImageUrl);
     } catch (error) {
         console.error(`Erro ao carregar imagem do repo ${filePath}:`, error);
@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Disponibiliza as URLs para o script /js/projeto.js
     window.projectImages = projectImageUrls;
 
-    // Inicializa a galeria/carrossel (funções em /js/projeto.js)
+    // inicializa a galeria/carrossel (funções em /js/projeto.js)
     if (typeof renderCarousel === 'function') {
         renderCarousel();
     } else {

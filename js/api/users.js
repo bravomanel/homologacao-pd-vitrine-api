@@ -1,5 +1,5 @@
 // const colaboradores = ['emanuel.bravo', 'leonardo.maciel', 'joao.tavares', 'caio.caldeira', 'geovanna.alves', 'matheus.lopes', 'kaue.santos', 'felipe.deoliveira', 'daniel.berberrt', 'lucas.alves', 'leandro.ribeiro', 'matheus.casagrande', 'paulo.martins', 'bruno.luz', 'arthur.othero', 'thalisson.santos', 'marcos.alexandria', 'joao.seixas'];
-const colaboradores = ['emanuel.bravo', 'leonardo.maciel', 'geovanna.alves', 'matheus.lopes',];
+const colaboradores = ['emanuel.bravo', 'leonardo.maciel', 'geovanna.alves', 'matheus.lopes'];
 
 // monta e adiciona o card de um colaborador na página.
 async function adicionarCard(pessoa) {
@@ -14,16 +14,18 @@ async function adicionarCard(pessoa) {
     const usuarioDetalhado = await pegaDetalhesDoUsuario(usuarioBasico.id);
     const bio = usuarioDetalhado ? usuarioDetalhado.bio : '';
     const avatarUrl = usuarioBasico.avatar_url;
-
+    console.log(avatarUrl)
     const divMae = document.querySelector('.div-cards-index');
     divMae.innerHTML += `
         <article
             class="col card-index d-flex flex-column justify-content-center align-items-center m-0 p-0 position-relative">
             <div class="card-index__retangulo-amarelo position-absolute top-0 start-0 position-relative">
                 <figure class="m-0">
-                    <img src="${avatarUrl || '/imagens/icones/user.svg'}" alt="foto padrão" 
-                        onerror="this.onerror=null; this.src='/imagens/icones/user.svg';" 
-                        class="card-index__foto rounded-circle position-absolute top-100 start-50 translate-middle">
+                <img
+                    src="${avatarUrl || '/imagens/icones/user.svg'}"
+                    alt="foto padrão"
+                    class="card-index__foto rounded-circle position-absolute top-100 start-50 translate-middle"
+                />
                     <figcaption>Foto padrão</figcaption>
                 </figure>
             </div>
