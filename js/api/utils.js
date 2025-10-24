@@ -190,13 +190,3 @@ async function pegaConteudoRawReadme(projeto) {
         return null;
     }
 }
-
-async function carregarImgProjeto(idProjeto) {
-    if (!idProjeto) {
-        console.warn("Erro ao buscar imagem")
-        return null;
-    }
-    const response = await fetch(`${gitlabApiUrl}/projects/${idProjeto}/repository/tree?path=screenshots&ref=main`, { headers: authHeaders });
-    console.log(response);
-}
-carregarImgProjeto(1252)
