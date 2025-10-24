@@ -1020,6 +1020,7 @@ figcaption {
 
 
 @media (min-width: 720px) {
+
     .container-meus-projetos,
     .container-projetos-compartilhados {
         align-items: flex-start;
@@ -1196,7 +1197,7 @@ figcaption {
 
 @media (min-width: 720px) {
     .conteudo-card-tela-perfil {
-    max-height: 267px;
+        max-height: 267px;
         gap: 5%;
     }
 }
@@ -1332,7 +1333,7 @@ figcaption {
     margin: 0 !important;
     padding: 0 !important;
     height: 15px;
-    }
+}
 
 @media (min-width: 500px) {
     .badges-card-projeto {
@@ -1342,7 +1343,7 @@ figcaption {
 
 @media (min-width: 720px) {
     .badges-card-projeto {
-        max-height: 79px;        
+        max-height: 79px;
         gap: 12px 13px;
     }
 
@@ -2755,3 +2756,21 @@ figure {
 }
 
 /*FIM DA CORREÇÃO DA FEAT36*/
+
+/*FORMATACAO DO README DINAMICO*/
+.readme-p {
+    max-height: 535px;
+    overflow: auto;
+}
+
+.readme-p::-webkit-scrollbar {
+    width: 1px;
+}
+
+.readme-p::-webkit-scrollbar-track {
+    background: var(--cor-bg-pagina);
+}
+
+.readme-p::-webkit-scrollbar-thumb {
+    background: var(--amarelo-pd);
+}

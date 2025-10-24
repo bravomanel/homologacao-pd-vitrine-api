@@ -37,7 +37,10 @@ document.addEventListener('DOMContentLoaded', async function () {
         const descEl = infoContainer.querySelector('.project-card:nth-of-type(1) p');
         if (titleEl) titleEl.textContent = projeto.name;
         // Usa o README como descrição, se existir; senão, usa a descrição do projeto
-        if (descEl) descEl.textContent = readmeContent || projeto.description || 'Sem descrição.';
+        const html = marked.parse(readmeContent); //para formatar readme
+        if (descEl) descEl.innerHTML = html || projeto.description || 'Sem descrição.';
+        //console.log("Marked está definido?", typeof marked);
+
 
         // Preenche Badges
         const badgeContainer = infoContainer.querySelector('.badges-container');
@@ -108,19 +111,19 @@ document.addEventListener('DOMContentLoaded', async function () {
     const galleryContainer = document.getElementById('project-gallery-desktop');
     const galleryModal = document.getElementById('gallery-modal');
     const modalImage = document.getElementById('modal-image');
-    
+
     let currentIndex = 0;
 
     function updateModalImage(index) {
         if (index < 0 || index >= projectImages.length) return; // Não faz nada se o índice for inválido
-        
+
         currentIndex = index;
         modalImage.src = projectImages[currentIndex];
 
         // Controla a visibilidade dos botões de navegação do modal
         const prevBtn = document.getElementById('modal-prev-btn');
         const nextBtn = document.getElementById('modal-next-btn');
-        
+
         if (prevBtn) prevBtn.style.display = (index === 0) ? 'none' : 'block';
         if (nextBtn) nextBtn.style.display = (index === projectImages.length - 1) ? 'none' : 'block';
     }
@@ -133,14 +136,14 @@ document.addEventListener('DOMContentLoaded', async function () {
             carouselContainer.innerHTML = '<p class="text-center p-3">Nenhuma imagem encontrada.</p>';
             return;
         }
-        
+
         const items = projectImages.map((src, index) =>
             `<div class="carousel-item ${index === 0 ? 'active' : ''}">
                 <img src="${src}" class="d-block w-100 main-project-image" alt="Imagem ${index + 1}"
                      data-bs-toggle="modal" data-bs-target="#gallery-modal" data-index="${index}">
             </div>`
         ).join('');
-        
+
         const indicators = projectImages.map((_, index) => `<button type="button" data-bs-target="#projectCarousel" data-bs-slide-to="${index}" class="${index === 0 ? 'active' : ''}" aria-current="${index === 0 ? 'true' : 'false'}" aria-label="Slide ${index + 1}"></button>`).join('');
         const carouselHTML = `<div id="projectCarousel" class="carousel slide" data-bs-ride="carousel"><div class="carousel-indicators">${indicators}</div><div class="carousel-inner">${items}</div><button class="carousel-control-prev" type="button" data-bs-target="#projectCarousel" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></button><button class="carousel-control-next" type="button" data-bs-target="#projectCarousel" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></button></div>`;
         carouselContainer.innerHTML = carouselHTML;
@@ -170,15 +173,15 @@ document.addEventListener('DOMContentLoaded', async function () {
         if (totalImages === 3) {
             // 3 imagens, mostra a terceira imagem média.
             galleryHTML += `<div class="gallery-item gallery-item-bottom-right" data-bs-toggle="modal" data-bs-target="#gallery-modal" data-index="2"><img src="${projectImages[2]}" alt="Imagem 3"></div>`;
-        
+
         } else if (totalImages >= 4) {
             // caso 4 ou mais imagens, cria o sub-grid 2x2.
             let subGridHTML = '<div class="gallery-sub-grid">';
             const maxInSubGrid = 4;
             // Pega 4 imagens (índices 2, 3, 4, 5)
-            const subGridImages = projectImages.slice(2, 2 + maxInSubGrid); 
+            const subGridImages = projectImages.slice(2, 2 + maxInSubGrid);
             // Calcula quantas imagens ficaram de fora (Total - 6 imagens visíveis)
-            const hiddenCount = totalImages - (1 + 1 + maxInSubGrid); 
+            const hiddenCount = totalImages - (1 + 1 + maxInSubGrid);
 
             subGridImages.forEach((src, i) => {
                 const imageIndex = 2 + i; // índice real da imagem no array principal
