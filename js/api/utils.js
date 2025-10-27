@@ -137,6 +137,7 @@ async function pegaLinguagens(idProjeto) {
 async function criarVetorBadges(idProjeto) {
     const response = await pegaLinguagens(idProjeto);
     const nomesLinguagens = Object.keys(response);
+    console.log(nomesLinguagens);
     const imgsBadges = [];
     nomesLinguagens.map((linguagem) => {
         imgsBadges.push(`imagens/badges/${linguagem}.svg`)
