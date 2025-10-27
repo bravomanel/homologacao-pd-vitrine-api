@@ -37,7 +37,7 @@ async function adicionarCard(pessoa) {
                 <div class="w-100 d-flex justify-content-center align-items-center flex-wrap gap-1 gap-md-2">
                     <img src="./../imagens/badges/HTML.svg" alt="HTML" class="card-index__badges">
                     <img src="./../imagens/badges/CSS.svg" alt="CSS" class="card-index__badges">
-                    <img src="./../imagens/badges/Javascript.svg" alt="Javascript" class="card-index__badges">
+                    <img src="./../imagens/badges/javascript.svg" alt="Javascript" class="card-index__badges">
                     <img src="./../imagens/badges/PostgreSQL.svg" alt="PostgreSQL" class="card-index__badges">
                     <img src="./../imagens/badges/Python.svg" alt="python" class="card-index__badges">
                     <img src="./../imagens/badges/C++.svg" alt="C++" class="card-index__badges">
